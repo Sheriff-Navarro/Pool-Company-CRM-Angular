@@ -10,6 +10,11 @@ var users = require('./routes/users');
 
 var mongoose = require('mongoose');
 
+// ----------AUTHENTICATION>
+const authRoutes = require('./routes/auth-routes');
+const session    = require('express-session');
+const passport   = require('passport');
+
 var app = express();
 
 require('./configs/database');
