@@ -12,7 +12,9 @@ const userSchema = new Schema({
   city: String,
   province: String
 
-}, clientSchema: {
+},
+
+clientSchema = {
 
   clientFname: String,
   clientLname: String,
@@ -24,7 +26,7 @@ const userSchema = new Schema({
   // clientUsername: String,
   // clientPassword: String
 
-  chemestryLevels: {
+  chemestryLevel: [{
 
     phlevel: Number,
     acidLevel: Number,
@@ -32,14 +34,8 @@ const userSchema = new Schema({
     alkalinityLevel: Number,
     calciumlevel: Number
 
-    {
-      clientTimetamps: {
-        clientCreatedAt: 'client_created_at',
-        clientUpdatedAt: 'client_updated_at'
-      }
-    }
+  }]
 
-  }
 }, {
 
   timestamps: {

@@ -1,108 +1,97 @@
 const express    = require('express');
-const passport   = require('passport');
 const bcrypt     = require('bcrypt');
+const User = require('../models/user-model');
 
-// Our user model
-const User       = require('../models/user-model');
-// Enter code here ------->
+const router = express.Router();
 
-// <-------------------------SIGN UP
-authRoutes.post('/signup', (req, res, next) => {
+router.post('/signup', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
   if (!username || !password) {
-    res.status(400).json({ message: 'Provide username and password' });
+    res.status(400).json({message: 'Provide the username and password.'});
     return;
   }
 
-  User.findOne({ username }, '_id', (err, foundUser) => {
-    if (foundUser) {
-      res.status(400).json({ message: 'The username already exists' });
+  // See if the user is already taken (query the database)
+  User.findOne({ username: username }, '_id', (err, foundUser) => {
+    if (foundUser){
+      res.status(400).json({message: 'The username already exists. Try another one.'});
       return;
-    }
+      }
 
-    const salt     = bcrypt.genSaltSync(10);
+    const salt = bcrypt.genSaltSync(10);
     const hashPass = bcrypt.hashSync(password, salt);
-
     const theUser = new User({
-      username,
+      username: username,
       password: hashPass
-    });
+      });
 
     theUser.save((err) => {
-      if (err) {
-        res.status(400).json({ message: 'Something went wrong' });
+      if (err){
+        res.status(500).json({message: 'Something went wrong'});
         return;
       }
 
       req.login(theUser, (err) => {
-        if (err) {
-          res.status(500).json({ message: 'Something went wrong' });
+        if (err){
+          res.status(500).json({message: 'Something went wrong 2'});
           return;
         }
-
-        res.status(200).json(req.user);
+        theUser.password = undefined;
+        res.status(200).json(theUser);
       });
-      }
-    });
-  });
-});
+    }); // theUser.save()
+  }); // User.findOne()
+}); // GET /signup
 
-// <-------------------------LOG IN
-authRoutes.post('/login', (req, res, next) => {
-  passport.authenticate('local', (err, theUser, failureDetails) => {
-    if (err) {
-      res.status(500).json({ message: 'Something went wrong' });
+
+router.post('/login', (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  // If the username credential is valid
+  User.findOne({username: username}, (err, foundUser) => {
+    if (!foundUser === null){
+      res.status(400).json({message: 'Incorrect username'});
       return;
     }
 
-    if (!theUser) {
-      res.status(401).json(failureDetails);
+    if (!bcrypt.compareSync(password, foundUser.password)) {
+      res.status(400).json({message: 'Incorrect password'});
       return;
     }
 
-    req.login(theUser, (err) => {
-      if (err) {
-        res.status(500).json({ message: 'Something went wrong' });
-        return;
-      }
-
-      // We are now logged in (notice req.user)
-      res.status(200).json(req.user);
+    // If we get herer we are good!
+    // log the user in
+    req.login(foundUser, (err) => {
+      foundUser.password = undefined;
+      res.status(200).json(foundUser);
+      return;
     });
-  })(req, res, next);
-});
+  }); // User.findOne()
+});// POST /login
 
-// <-------------------------LOG OUT
-authRoutes.post('/logout', (req, res, next) => {
+router.post('/logout', (req, res, next) => {
   req.logout();
-  res.status(200).json({ message: 'Success' });
-});
+  res.status(200).json({ message: 'Logout Success' });
+});// LOGED OUT
 
-
-// <-------------------------LOGGED IN CHECK
-authRoutes.get('/loggedin', (req, res, next) => {
+router.get('/account', (req, res, next) => {
   if (req.isAuthenticated()) {
     res.status(200).json(req.user);
     return;
-  }
+  }// Checking if loged in or not
 
-  res.status(403).json({ message: 'Unauthorized' });
+  res.status(403).json({ message: 'Unauthorized. Please login' });
 });
 
-// <-------------------------PRIVATEAPP
-authRoutes.get('/admin-app', (req, res, next) => {
+router.get('/private', (req, res, next) => {
   if (req.isAuthenticated()) {
     res.json({ message: 'This is a private message' });
     return;
-  }
+  } // If loged in, show the secret info. Otherwise show unauthorized
 
-  res.status(403).json({ message: 'Unauthorized' });
+  res.status(403).json({ message: 'Unauthorized. Please login' });
 });
 
-
-
-// EXPORTING!
-// const authRoutes = express.Router()
-module.exports = authRoutes;
+module.exports = router;
