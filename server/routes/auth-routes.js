@@ -29,16 +29,17 @@ router.post('/signup', (req, res, next) => {
 
     theUser.save((err) => {
       if (err){
-        res.status(500).json({message: 'Something went wrong'});
+        res.status(500).json({message: 'Something went wrong creating your account in the database. User account was not created.'});
         return;
       }
 
       req.login(theUser, (err) => {
         if (err){
-          res.status(500).json({message: 'Something went wrong 2'});
+          res.status(500).json({message: 'Something went wrong at loging in step. Please try again.'});
           return;
         }
-        theUser.password = undefined;
+
+        // theUser.password = undefined; // Does not hide the user's password in mongo. Needs to do this for security reasons. Ask Alan.
         res.status(200).json(theUser);
       });
     }); // theUser.save()
@@ -51,6 +52,7 @@ router.post('/login', (req, res, next) => {
   const password = req.body.password;
   // If the username credential is valid
   User.findOne({username: username}, (err, foundUser) => {
+
     if (!foundUser === null){
       res.status(400).json({message: 'Incorrect username'});
       return;
@@ -87,7 +89,7 @@ router.get('/account', (req, res, next) => {
 
 router.get('/private', (req, res, next) => {
   if (req.isAuthenticated()) {
-    res.json({ message: 'This is a private message' });
+    res.json({ message: 'You are now loged in and can use the app' });
     return;
   } // If loged in, show the secret info. Otherwise show unauthorized
 
