@@ -107,7 +107,7 @@ router.post('/logout', (req, res, next) => {
 });// LOGED OUT
 
 //--------------------------------------------------------Validate user is loged in route
-router.get('/validate', (req, res, next) => {
+router.get('/loggedin', (req, res, next) => {
   if (req.isAuthenticated()) {
     res.status(200).json({ message: 'You are currently loged in' });
     return;
