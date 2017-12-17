@@ -18,7 +18,7 @@ const userSchema = new Schema({
   province: String,
 
 
-  clientinfo : [{
+  clientInfo : [{
 
     firstName: String,
     lastName: String,

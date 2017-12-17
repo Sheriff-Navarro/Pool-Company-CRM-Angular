@@ -10,6 +10,8 @@ const passport = require('passport');
 const session = require('express-session');
 const authRoutes = require('./routes/auth-routes');
 const editRoutes = require('./routes/user');
+const newContact = require('./routes/new-contact');
+
 
 require('./config/data-base-setup');
 require('./config/passport-setup');
@@ -44,6 +46,7 @@ app.use(passport.session());
 app.use('/', index);
 app.use('/', authRoutes);
 app.use('/', editRoutes);
+app.use('/new-contact', newContact);
 //-------------------------------------
 
 app.use((req, res, next) => {
