@@ -15,38 +15,33 @@ const userSchema = new Schema({
   phonePrimary: String,
   street: String,
   city: String,
-  province: String
+  province: String,
 
-// },
-//
-// clientSchema = {
-//
-//   clientFname: String,
-//   clientLname: String,
-//   clientPhonePrimary: Number,
-//   clientStreet: String,
-//   clientCity: String,
-//   clientprovince: String,
-//   //Client portal info
-//   // clientUsername: String,
-//   // clientPassword: String
-//
-//   chemestryLevel: [{
-//
-//     phlevel: Number,
-//     acidLevel: Number,
-//     chlorineLevel: Number,
-//     alkalinityLevel: Number,
-//     calciumlevel: Number
-//
-//   }]
-//
-// }, {
-//
-//   timestamps: {
-//     createdAt: 'created_at',
-//     updatedAt: 'updated_at'
-//   }
+
+  clientinfo : [{
+
+    firstName: String,
+    lastName: String,
+    companyName: String,
+    phonePrimary: String,
+    street: String,
+    city: String,
+    province: String,
+    //Client portal info
+    // clientUsername: String,
+    // clientPassword: String
+
+    chemestryLevel: [{
+
+      ph: String,
+      acid: String,
+      chlorine: String,
+      alkalinity: String,
+      calcium: String,
+
+    }]
+
+  }],
 });
 
 const User = mongoose.model('User', userSchema);
