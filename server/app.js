@@ -9,7 +9,7 @@ var index = require('./routes/index');
 const passport = require('passport');
 const session = require('express-session');
 const authRoutes = require('./routes/auth-routes');
-const editRoutes = require('./routes/edit-routes');
+const editRoutes = require('./routes/user');
 
 require('./config/data-base-setup');
 require('./config/passport-setup');
@@ -43,7 +43,7 @@ app.use(passport.session());
 //ROUTES -------------------------------------
 app.use('/', index);
 app.use('/', authRoutes);
-app.use('/app/', editRoutes);
+app.use('/', editRoutes);
 //-------------------------------------
 
 app.use((req, res, next) => {
