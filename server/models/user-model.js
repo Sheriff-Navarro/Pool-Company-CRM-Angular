@@ -3,11 +3,13 @@ const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
   // required signup details
-  username: {type: String, require: true},
-  password: {type: String, require: true},
+  email: {type: String, required: true, unique: true, lowercase: true},
+  username: {type: String, required: true, unique: true, lowercase: true},
+  password: {type: String, required: true},
   // user personal info
   firstName: String,
   lastName: String,
+  companyName: String,
   phonePrimary: Number,
   street: String,
   city: String,
