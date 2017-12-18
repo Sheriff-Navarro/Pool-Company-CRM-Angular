@@ -1,23 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
-
 import { SessionService } from "./services/session.service";
-import { Routes } from "@angular/router";
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
-
+const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login',  component: AuthComponent },
+  { path: 'dashboard', component: DashboardComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent
+    AuthComponent,
+    NavBarComponent,
+    DashboardComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),  //  <!-- "routes" is the array defined above
     BrowserModule,
     FormsModule,
     HttpModule

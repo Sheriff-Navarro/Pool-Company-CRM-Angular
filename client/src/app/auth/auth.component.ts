@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from "../services/session.service";
 
-
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.css']
 })
 
 export class AuthComponent implements OnInit {
