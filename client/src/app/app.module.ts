@@ -10,12 +10,12 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 
-const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login',  component: AuthComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: '**', component: ErrorComponent }
-];
+// const routes: Routes = [
+//   { path: '', redirectTo: 'login', pathMatch: 'full' },
+//   { path: 'login',  component: AuthComponent },
+//   { path: 'dashboard', component: DashboardComponent },
+//   { path: '**', component: ErrorComponent }
+// ];
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ const routes: Routes = [
     ErrorComponent
   ],
   imports: [
-    RouterModule.forRoot(routes),  //  <!-- "routes" is the array defined above
+    // RouterModule.forRoot(routes),  //  <!-- "routes" is the array defined above
     BrowserModule,
     FormsModule,
     HttpModule

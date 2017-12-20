@@ -1,4 +1,4 @@
-<h1> Authentication Sample </h1>
+<!-- <h1> Authentication Sample </h1>
 <form *ngIf="!user">
   <h2> Login or Signup </h2>
   <label> Username </label>
@@ -22,4 +22,27 @@
   <button (click)="getPrivateData()"> Get private data </button>
 </div>
 
-<p class="error"> {{ error }} </p>
+<p class="error"> {{ error }} </p> -->
+<div class="row justify-content-md-center">
+  <div class="col-md-4">
+<form class="form-signin">
+        <h2 class="form-signin-heading">Login or Signup</h2>
+
+          <label for="inputEmail" class="sr-only" [(ngModel)]="formInfo.email">Email address</label>
+          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+
+          <label for="inputUsername" class="sr-only" [(ngModel)]="formInfo.username">Username</label>
+          <input type="username" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+
+        <label for="inputPassword" class="sr-only" [(ngModel)]="formInfo.password">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <!-- <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div> -->
+        <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="login()">Sign in</button>
+        <button class="btn btn-link btn-block" type="submit" (click)="signup()">Sign up</button>
+      </form>
+</div>
+</div>
