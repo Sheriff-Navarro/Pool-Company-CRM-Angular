@@ -1,6 +1,6 @@
 const express    = require('express');
+const mongoose   = require('mongoose');
 const bcrypt     = require('bcrypt');
-const mongoose = require('mongoose');
 const passport   = require('passport');
 const User       = require('../models/user-model');
 
@@ -174,6 +174,5 @@ router.delete('/delete/:id', (req, res) => {
     });
   })
 });
-
 
 module.exports = router;
