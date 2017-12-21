@@ -3,21 +3,23 @@ const mongoose   = require('mongoose');
 const bcrypt     = require('bcrypt');
 const passport   = require('passport');
 const User       = require('../models/user-model');
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+
 
 const router = express.Router();
 
 //--------------------------------------------------------Sign up route
-router.post('/signup', (req, res, next) => {
+router.post('/signup', ensureLoggedOut(), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  const firstName = req.body.firstName;
-  const lastName = req.body.lastName;
-  const companyName = req.body.companyName;
-  const phonePrimary = req.body.phonePrimary;
-  const street = req.body.street;
-  const city = req.body.city;
-  const province = req.body.province;
+  // const firstName = req.body.firstName;
+  // const lastName = req.body.lastName;
+  // const companyName = req.body.companyName;
+  // const phonePrimary = req.body.phonePrimary;
+  // const street = req.body.street;
+  // const city = req.body.city;
+  // const province = req.body.province;
 
   //second step of sign up
   if (!username || !password) {
@@ -37,13 +39,13 @@ router.post('/signup', (req, res, next) => {
     const theUser = new User({
       username: username,
       password: hashPass,
-      firstName: firstName,
-      lastName: lastName,
-      companyName: companyName,
-      phonePrimary: phonePrimary,
-      street: street,
-      city: city,
-      province: province,
+      // firstName: firstName,
+      // lastName: lastName,
+      // companyName: companyName,
+      // phonePrimary: phonePrimary,
+      // street: street,
+      // city: city,
+      // province: province,
     });
 
     theUser.save((err) => {
@@ -128,31 +130,31 @@ router.get('/account', (req, res, next) => {
 //--------------------------------------------------------Add personal details route
 router.put('/edit/:id', (req, res) => {
 
-  if(!mongoose.Types.ObjectId.isValid(req.params.id)) { // Checks if the user id exists
-    res.status(400).json({ message: 'Specified id is not valid' });
-    return;
-  }
-
-  const update = {
-    firstName : req.body.firstName,
-    lastName : req.body.lastName,
-    companyName : req.body.companyName,
-    phonePrimary : req.body.phonePrimary,
-    street : req.body.street,
-    city : req.body.city,
-    province : req.body.province
-  };
-
-  User.findByIdAndUpdate(req.params.id, update, (err) => {
-    if (err) {
-      res.json(err);
+    if(!mongoose.Types.ObjectId.isValid(req.params.id)) { // Checks if the user id exists
+      res.status(400).json({ message: 'Specified id is not valid' });
       return;
     }
 
-    res.json({
-      message: 'Admin updated successfully'
+    const update = {
+      firstName : req.body.firstName,
+      lastName : req.body.lastName,
+      companyName : req.body.companyName,
+      phonePrimary : req.body.phonePrimary,
+      street : req.body.street,
+      city : req.body.city,
+      province : req.body.province
+    };
+
+    User.findByIdAndUpdate(req.params.id, update, (err) => {
+      if (err) {
+        res.json(err);
+        return;
+      }
+
+      res.json({
+        message: 'Admin updated successfully'
+      });
     });
-  });
 });
 
 //-------------------------------------------------------- Delete account route
