@@ -1,48 +1,40 @@
 <!-- <h1> Authentication Sample </h1>
 <form *ngIf="!user">
-  <h2> Login or Signup </h2>
-  <label> Username </label>
-  <input type="text" [(ngModel)]="formInfo.username" name="username"/>
-  <br>
-  <label> Password </label>
-  <input type="password" [(ngModel)]="formInfo.password" name="password"/>
+<h2> Login or Signup </h2>
+<label> Username </label>
+<input type="text" [(ngModel)]="formInfo.username" name="username"/>
+<br>
+<label> Password </label>
+<input type="password" [(ngModel)]="formInfo.password" name="password"/>
 
-  <button (click)="login()"> login </button>
-  <button (click)="signup()"> signup </button>
+<button (click)="login()"> login </button>
+<button (click)="signup()"> signup </button>
 </form>
 
 <div *ngIf="user">
-  <h2> You are now logged in as {{ user.username }}!! </h2>
-  <p> Here's the user object </p>
-  <pre> {{ user | json }} </pre>
+<h2> You are now logged in as {{ user.username }}!! </h2>
+<p> Here's the user object </p>
+<pre> {{ user | json }} </pre>
 
-  <p *ngIf="privateData"> Here's some data fetched from a protected API </p>
-  <pre> {{ privateData | json }} </pre>
-  <button (click)="logout()"> logout </button>
-  <button (click)="getPrivateData()"> Get private data </button>
+<p *ngIf="privateData"> Here's some data fetched from a protected API </p>
+<pre> {{ privateData | json }} </pre>
+<button (click)="logout()"> logout </button>
+<button (click)="getPrivateData()"> Get private data </button>
 </div>
 
 <p class="error"> {{ error }} </p> -->
-<div class="row justify-content-md-center">
-  <div class="col-md-4">
-<form class="form-signin">
-        <h2 class="form-signin-heading">Login or Signup</h2>
 
-          <label for="inputEmail" class="sr-only" [(ngModel)]="formInfo.email">Email address</label>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+<div class="row">
+  <form class="form-signin">
+    <h2 class="form-signin-heading">Login or Signup</h2><br>
 
-          <label for="inputUsername" class="sr-only" [(ngModel)]="formInfo.username">Username</label>
-          <input type="username" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+    <label for="inputUsername" class="sr-only" [(ngModel)]="formInfo.username" [ngModelOptions]="{standalone: true}">Username</label>
+    <input id="inputEmail" class="form-control" placeholder="Email" required autofocus>
 
-        <label for="inputPassword" class="sr-only" [(ngModel)]="formInfo.password">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <!-- <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div> -->
-        <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="login()">Sign in</button>
-        <button class="btn btn-link btn-block" type="submit" (click)="signup()">Sign up</button>
-      </form>
-</div>
+    <label for="inputPassword" class="sr-only" [(ngModel)]="formInfo.password" [ngModelOptions]="{standalone: true}">Password</label>
+    <input  id="inputPassword" class="form-control" placeholder="Password" required><br>
+
+<button class="btn btn-lg btn-primary btn-block" type="submit" (click)="login()">Sign in</button>
+<button class="btn btn-link btn-block" type="submit" (click)="signup()">Sign up</button>
+</form>
 </div>

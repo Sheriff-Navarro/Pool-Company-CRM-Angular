@@ -2,14 +2,12 @@ const express    = require('express');
 const mongoose   = require('mongoose');
 const bcrypt     = require('bcrypt');
 const passport   = require('passport');
-const User       = require('../models/user-model');
-const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
-
+const User       = require('../../models/user-model');
 
 const router = express.Router();
 
 //--------------------------------------------------------Sign up route
-router.post('/signup', ensureLoggedOut(), (req, res, next) => {
+router.post('/api/signup', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -67,7 +65,7 @@ router.post('/signup', ensureLoggedOut(), (req, res, next) => {
 }); // closes GET /signup
 
 //--------------------------------------------------------Login route
-router.post('/login', (req, res, next) => {
+router.post('/api/login', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -100,13 +98,13 @@ router.post('/login', (req, res, next) => {
 });// POST /login
 
 //--------------------------------------------------------Log out route
-router.post('/logout', (req, res, next) => {
+router.post('/api/logout', (req, res, next) => {
   req.logout(); // this is the function that logsout the user
   res.status(200).json({ message: 'Log out was successful' });
 });
 
 //--------------------------------------------------------Validate user is loged in route
-router.get('/loggedin', (req, res, next) => { // this function verifies if the user is authenticated or not.
+router.get('/api/loggedin', (req, res, next) => { // this function verifies if the user is authenticated or not.
   if (req.isAuthenticated()) { // passing the isAuthenticated function which will verify for us the user is authenticated.
     res.status(200).json({ message: 'You are currently loged in' });
     return;
@@ -117,7 +115,7 @@ router.get('/loggedin', (req, res, next) => { // this function verifies if the u
 });
 
 //--------------------------------------------------------Show user app route
-router.get('/account', (req, res, next) => {
+router.get('/api/account', (req, res, next) => {
   if (req.isAuthenticated()) {
     res.json({ message: 'Secret sauce' });
     return;
@@ -128,37 +126,37 @@ router.get('/account', (req, res, next) => {
 });
 
 //--------------------------------------------------------Add personal details route
-router.put('/edit/:id', (req, res) => {
+router.put('/api/:id', (req, res) => {
 
-    if(!mongoose.Types.ObjectId.isValid(req.params.id)) { // Checks if the user id exists
-      res.status(400).json({ message: 'Specified id is not valid' });
+  if(!mongoose.Types.ObjectId.isValid(req.params.id)) { // Checks if the user id exists
+    res.status(400).json({ message: 'Specified id is not valid' });
+    return;
+  }
+
+  const update = {
+    firstName : req.body.firstName,
+    lastName : req.body.lastName,
+    companyName : req.body.companyName,
+    phonePrimary : req.body.phonePrimary,
+    street : req.body.street,
+    city : req.body.city,
+    province : req.body.province
+  };
+
+  User.findByIdAndUpdate(req.params.id, update, (err) => {
+    if (err) {
+      res.json(err);
       return;
     }
 
-    const update = {
-      firstName : req.body.firstName,
-      lastName : req.body.lastName,
-      companyName : req.body.companyName,
-      phonePrimary : req.body.phonePrimary,
-      street : req.body.street,
-      city : req.body.city,
-      province : req.body.province
-    };
-
-    User.findByIdAndUpdate(req.params.id, update, (err) => {
-      if (err) {
-        res.json(err);
-        return;
-      }
-
-      res.json({
-        message: 'Admin updated successfully'
-      });
+    res.json({
+      message: 'User account updated successfully'
     });
+  });
 });
 
 //-------------------------------------------------------- Delete account route
-router.delete('/delete/:id', (req, res) => {
+router.delete('/api/:id', (req, res) => {
   // Checks if user ID is valid in the URL
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });

@@ -16,7 +16,7 @@ import { Observable } from 'rxjs/Rx';
 @Injectable()
 export class SessionService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) { } // let us do POST, PUT, DELETE, PATCH, ETC
 
   handleError(e) {
     return Observable.throw(e.json().message);
@@ -51,4 +51,8 @@ export class SessionService {
       .map(res => res.json())
       .catch(this.handleError);
   }
+
+
+
+  // I need to add edit and delete
 }

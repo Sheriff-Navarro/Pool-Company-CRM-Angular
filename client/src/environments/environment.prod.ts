@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiBase: "" //Angular uses the same as the backend
 };

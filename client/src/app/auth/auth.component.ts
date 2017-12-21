@@ -10,7 +10,6 @@ import { SessionService } from "../services/session.service";
 export class AuthComponent implements OnInit {
   user: any;
   formInfo = {
-    email: '',
     username: '',
     password: ''
   };
