@@ -31,7 +31,7 @@ router.post('/api/signup', (req, res, next) => {
       res.status(400).json({message: 'The username already exists. Try another one.'});
       return;
     }
-    
+
     const salt = bcrypt.genSaltSync(10);
     const hashPass = bcrypt.hashSync(password, salt);
     const theUser = new User({

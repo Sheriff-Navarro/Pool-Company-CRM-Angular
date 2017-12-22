@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', (req, res, next) => {
-}); // homepage
+router.get('/', (req, res, next) => { // homepage
+});
 
 // router.get('/about', (req, res, next) => {
 // });

@@ -1,40 +1,26 @@
-<!-- <h1> Authentication Sample </h1>
-<form *ngIf="!user">
-<h2> Login or Signup </h2>
-<label> Username </label>
-<input type="text" [(ngModel)]="formInfo.username" name="username"/>
-<br>
-<label> Password </label>
-<input type="password" [(ngModel)]="formInfo.password" name="password"/>
+<div class="login-page">
 
-<button (click)="login()"> login </button>
-<button (click)="signup()"> signup </button>
-</form>
+  <p *ngIf="errorMessage" class="error" style="color: red;">
+   {{ errorMessage }}
+ </p>
 
-<div *ngIf="user">
-<h2> You are now logged in as {{ user.username }}!! </h2>
-<p> Here's the user object </p>
-<pre> {{ user | json }} </pre>
+  <div class="form">
+    <form class="register-form" (ngSubmit)="doSignUp()">
+      <input type="email" placeholder="Email Address" [(ngModel)]="signUpInfo.username" name="username"/>
+      <input type="password" placeholder="password" [(ngModel)]="signUpInfo.password" name="passwrod"/>
+      <button>create</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
 
-<p *ngIf="privateData"> Here's some data fetched from a protected API </p>
-<pre> {{ privateData | json }} </pre>
-<button (click)="logout()"> logout </button>
-<button (click)="getPrivateData()"> Get private data </button>
-</div>
+    <p *ngIf="loginErrorMessage" class="error" style="color: red; font-weight: 700;">
+  {{ loginErrorMessage }}
+</p>
 
-<p class="error"> {{ error }} </p> -->
-
-<div class="row">
-  <form class="form-signin">
-    <h2 class="form-signin-heading">Login or Signup</h2><br>
-
-    <label for="inputUsername" class="sr-only" [(ngModel)]="formInfo.username" [ngModelOptions]="{standalone: true}">Username</label>
-    <input id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-
-    <label for="inputPassword" class="sr-only" [(ngModel)]="formInfo.password" [ngModelOptions]="{standalone: true}">Password</label>
-    <input  id="inputPassword" class="form-control" placeholder="Password" required><br>
-
-<button class="btn btn-lg btn-primary btn-block" type="submit" (click)="login()">Sign in</button>
-<button class="btn btn-link btn-block" type="submit" (click)="signup()">Sign up</button>
-</form>
+    <form class="login-form" (ngSubmit)="doLogin()">
+      <input type="email" placeholder="Email Address" [(ngModel)]="loginInfo.username" name="username" required focus/>
+      <input type="password" placeholder="Password" [(ngModel)]="loginInfo.password" name="password" required/>
+      <button>login</button>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
 </div>
