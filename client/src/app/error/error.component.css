@@ -1,0 +1,28 @@
+.error-template {
+  padding: 100px 15px;
+  text-align: center;
+  color: white;
+}
+
+.error-actions {
+  margin-top:15px;
+  margin-bottom:15px;
+  color: white;
+}
+.error-actions .btn {
+  margin-right:10px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+span {
+  margin-right: 10px;
+}
