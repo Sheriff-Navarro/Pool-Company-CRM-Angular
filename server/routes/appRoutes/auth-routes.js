@@ -48,7 +48,7 @@ router.post('/api/signup', (req, res, next) => {
 
     theUser.save((err) => {
       if (err){
-        res.status(500).json({message: 'Something went wrong creating your account in the database. User account was not created. Please try again.'});
+        res.status(500).json({message: 'Something went wrong creating your account in the database. User account was not created so please try again.'});
         return;
       }
 
@@ -72,17 +72,17 @@ router.post('/api/login', (req, res, next) => {
   User.findOne({username: username}, (err, foundUser) => {   // query accounts by username entered
 
     if (!username || !password ){ // if no username or password is found execute a server 400 res
-      res.status(400).json({message: 'Please make sure all required fields are filled out correctly'});
+      res.status(400).json({message: 'Please make sure all required fields are filled out correctly.'});
       return;
     }
 
     if (!foundUser) { // checks if username exists
-      res.status(400).json({message: 'Username entered does not exist. Please try a different username or sign up for a new account'});
+      res.status(400).json({message: 'Email entered does not exist in the database. Please try a different email or sign up for a new account.'});
       return;
     }
 
     if (!bcrypt.compareSync(password, foundUser.password)) { // checks if user's entered password matches the password encrypted with the foundUser
-    res.status(400).json({message: 'Incorrect password'});
+    res.status(400).json({message: 'Incorrect password.'});
     return;
   }
 
@@ -100,36 +100,36 @@ router.post('/api/login', (req, res, next) => {
 //--------------------------------------------------------Log out route
 router.post('/api/logout', (req, res, next) => {
   req.logout(); // this is the function that logsout the user
-  res.status(200).json({ message: 'Log out was successful' });
+  res.status(200).json({ message: 'Log out was successful!' });
 });
 
 //--------------------------------------------------------Validate user is loged in route
-router.get('/api/loggedin', (req, res, next) => { // this function verifies if the user is authenticated or not.
+router.get('/api/checklogin', (req, res, next) => { // this function verifies if the user is authenticated or not.
   if (req.isAuthenticated()) { // passing the isAuthenticated function which will verify for us the user is authenticated.
-    res.status(200).json({ message: 'You are currently loged in' });
+    res.status(200).json({ message: 'You are currently loged in!' });
     return;
   }// Checking if loged in or not
 
   else // otherwise res serve 403 (forbidden)
-  res.status(403).json({ message: 'Unauthorized. Please login' });
+  res.status(403).json({ message: 'Unauthorized. Please login.' });
 });
 
 //--------------------------------------------------------Show user app route
-router.get('/api/account', (req, res, next) => {
+router.get('/api/dashboard', (req, res, next) => {
   if (req.isAuthenticated()) {
-    res.json({ message: 'Secret sauce' });
+    res.json({ message: 'You\'re loged in! This is your Dashboard.' });
     return;
   } // If loged in, show the secret info. Otherwise show unauthorized
 
   else
-  res.status(403).json({ message: 'Unauthorized. Please login' });
+  res.status(403).json({ message: 'Unauthorized. Please login first.' });
 });
 
 //--------------------------------------------------------Add personal details route
-router.put('/api/:id', (req, res) => {
+router.put('/api/edit/:id', (req, res) => {
 
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) { // Checks if the user id exists
-    res.status(400).json({ message: 'Specified id is not valid' });
+    res.status(400).json({ message: 'Specified id is not valid. Try another one.' });
     return;
   }
 
@@ -150,16 +150,16 @@ router.put('/api/:id', (req, res) => {
     }
 
     res.json({
-      message: 'User account updated successfully'
+      message: 'User account updated successfully!'
     });
   });
 });
 
 //-------------------------------------------------------- Delete account route
-router.delete('/api/:id', (req, res) => {
+router.delete('/api/delete/:id', (req, res) => {
   // Checks if user ID is valid in the URL
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(400).json({ message: 'Specified id is not valid' });
+    res.status(400).json({ message: 'Specified id is not valid. Try another one.' });
     return;
   }
 
@@ -170,7 +170,7 @@ router.delete('/api/:id', (req, res) => {
     }
 
     return res.json({
-      message: 'User has been Deleted'
+      message: 'User has been deleted from the database.'
     });
   })
 });
