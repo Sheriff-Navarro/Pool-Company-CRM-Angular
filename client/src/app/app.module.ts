@@ -9,12 +9,15 @@ import { HttpModule } from '@angular/http';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login',  component: AuthComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'logout',  component:  LogoutComponent},
   { path: '**', component: ErrorComponent }
+
 ];
 
 @NgModule({
@@ -23,7 +26,8 @@ const routes: Routes = [
     AuthComponent,
     NavBarComponent,
     DashboardComponent,
-    ErrorComponent
+    ErrorComponent,
+    LogoutComponent
   ],
   imports: [
     RouterModule.forRoot(routes),  //  <!-- "routes" is the array defined above

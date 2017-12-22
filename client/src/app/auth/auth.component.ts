@@ -7,6 +7,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
+
 export class AuthComponent implements OnInit {
   isLoggedOut: boolean = false;
 

@@ -12,14 +12,13 @@ body {
 }
 
 .card {
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     transition: 0.3s;
     width: 100%;
     background-color: white;
     color: black;
     border-radius: 5px; /* 5px rounded corners */
     padding: 20px 20px 25px 25px;
-
 }
 
 .card:hover {
