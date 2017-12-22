@@ -1,10 +1,9 @@
 <div class="login-page">
 
-  <p *ngIf="errorMessage" class="error" style="color: red;">
-   {{ errorMessage }}
- </p>
-
   <div class="form">
+
+    <h1 *ngIf="errorMessage">🤦</h1><p *ngIf="errorMessage" class="error" style="color: red; font-weight: 700;">{{ errorMessage }}</p>
+
     <form class="register-form" (ngSubmit)="doSignUp()">
       <input type="email" placeholder="Email Address" [(ngModel)]="signUpInfo.username" name="username"/>
       <input type="password" placeholder="password" [(ngModel)]="signUpInfo.password" name="passwrod"/>
@@ -12,9 +11,7 @@
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>
 
-    <p *ngIf="loginErrorMessage" class="error" style="color: red; font-weight: 700;">
-  {{ loginErrorMessage }}
-</p>
+    <h1 *ngIf="loginErrorMessage">🤦</h1><p *ngIf="loginErrorMessage" class="error" style="color: red; font-weight: 700;">{{ loginErrorMessage }}</p>
 
     <form class="login-form" (ngSubmit)="doLogin()">
       <input type="email" placeholder="Email Address" [(ngModel)]="loginInfo.username" name="username" required focus/>
