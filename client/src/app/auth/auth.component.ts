@@ -34,7 +34,7 @@ export class AuthComponent implements OnInit {
     this.authService.checklogin()
       // If success, we are logged in.
       .then((resultFromApi) => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/app/dashboard']);
       })
 
       // Even if you don't do anything on error, catch to avoid a console error.
@@ -56,7 +56,7 @@ export class AuthComponent implements OnInit {
           this.errorMessage = "";
 
           // redirect to /camels
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/app/dashboard']);
       })
       .catch((err) => {
           const parsedError = err.json();
@@ -76,7 +76,7 @@ export class AuthComponent implements OnInit {
           this.loginErrorMessage = "";
 
           // redirect to page if success
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/app/dashboard']);
       })
       .catch((err) => {
           const parsedError = err.json();

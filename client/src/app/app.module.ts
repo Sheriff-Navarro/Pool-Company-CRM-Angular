@@ -10,14 +10,17 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 import { LogoutComponent } from './logout/logout.component';
+import { SettingsComponent } from './settings/settings.component';
+
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login',  component: AuthComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'logout',  component:  LogoutComponent},
+  { path: 'app/login',  component: AuthComponent },
+  { path: 'app/dashboard', component: DashboardComponent },
+  { path: 'app/logout',  component:  LogoutComponent},
+  { path: 'app/settings',  component:  SettingsComponent},
   { path: '**', component: ErrorComponent }
-
 ];
 
 @NgModule({
@@ -27,7 +30,8 @@ const routes: Routes = [
     NavBarComponent,
     DashboardComponent,
     ErrorComponent,
-    LogoutComponent
+    LogoutComponent,
+    SettingsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),  //  <!-- "routes" is the array defined above

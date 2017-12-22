@@ -20,7 +20,7 @@ export class LogoutComponent implements OnInit {
   ngOnInit() {
     this.auth.logout()
       .then(() => {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/app/login']);
       })
       .catch(() => {
           this.logoutError = 'There was a problem loging you out. Please try again.';
