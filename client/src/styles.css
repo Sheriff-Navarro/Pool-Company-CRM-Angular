@@ -1,11 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 body {
-  background: #76b852; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #0061ff, #0099ff);
-  background: -moz-linear-gradient(right, #0061ff, #0099ff);
-  background: -o-linear-gradient(right, #0061ff, #0099ff);
-  background: linear-gradient(to left, #0061ff, #0099ff);
+  background: DodgerBlue; /* fallback for old browsers */
+  background: -webkit-linear-gradient(right, Blue , DodgerBlue);
+  background: -moz-linear-gradient(right, Blue , DodgerBlue );
+  background: -o-linear-gradient(right, Blue , DodgerBlue );
+  background: linear-gradient(to left, Blue , DodgerBlue );
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

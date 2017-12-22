@@ -15,7 +15,7 @@ import { SettingsComponent } from './settings/settings.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'app/login', pathMatch: 'full' },
   { path: 'app/login',  component: AuthComponent },
   { path: 'app/dashboard', component: DashboardComponent },
   { path: 'app/logout',  component:  LogoutComponent},
