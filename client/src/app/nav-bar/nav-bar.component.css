@@ -1,0 +1,17 @@
+.pillLink, .navbar-inverse .navbar-nav>li>a {
+  color: white;
+}
+
+.nav-pills>li>a:hover {
+  color: black;
+}
+
+.nav-pills>li.active>a{
+  background-color: #0099ff;
+  color: white;
+}
+
+.navbar{
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+}

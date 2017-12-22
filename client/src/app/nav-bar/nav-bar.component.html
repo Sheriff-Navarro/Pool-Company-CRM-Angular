@@ -1,20 +1,60 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/dashboard">Pool Company CRM</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style="margin-right: 4px;" class="glyphicon glyphicon-plus"></span>Create <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <p style="margin-left: 10px;">CREATE</p>
+            <li><a href="/new-client">New Client</a></li>
+            <li><a href="/new-service">New Service</a></li>
+            <li><a href="/new-product">New Product</a></li>
+            <li role="separator" class="divider"></li>
+            <p style="margin-left: 10px;">LOG INFO</p>
+            <li><a href="/new-vitals">Log Pool Vitals</a></li>
+            <li><a href="/new-note">Log Service Notes</a></li>
+            <li role="separator" class="divider"></li>
+            <p style="margin-left: 10px;">SCHEDULE</p>
+            <li><a href="/new-event">New Event</a></li>
+            <li><a href="/new-task">New Task</a></li>
+            <li role="separator" class="divider"></li>
+            <p style="margin-left: 10px;">BILLING</p>
+            <li><a href="/new-invoice">New Invoice</a></li>
+            <li><a href="/new-payment">New Payment</a></li>
           </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="http://i0.kym-cdn.com/entries/icons/medium/000/009/754/PhotogenicGuy.jpg" alt="..." class="img-circle" style="max-height: 20px; margin-right: 10px;">AARON <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/settings">Settings</a></li>
+            <li><a href="/help">Help</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/logout">Log Out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+    <hr style="margin: 0 0 5px 0;     border-top: 1px solid grey;">
+    <ul class="nav nav-pills" style="padding-bottom: 5px;">
+      <li role="presentation" class="active"><a href="/dashboard">Dashboard</a></li>
+      <li role="presentation"><a class="pillLink" href="/clients">Clients</a></li>
+      <li role="presentation"><a class="pillLink" href="/services">Services</a></li>
+      <li role="presentation"><a class="pillLink" href="/products">Products</a></li>
+      <li role="presentation"><a class="pillLink" href="/calendar">Calendar</a></li>
+      <li role="presentation"><a class="pillLink" href="/activities">Activities</a></li>
+      <li role="presentation"><a class="pillLink" href="/invoices">Invoices</a></li>
+      <li role="presentation"><a class="pillLink" href="/payments">Payments</a></li>
+    </ul>
+  </div>
+</nav>
