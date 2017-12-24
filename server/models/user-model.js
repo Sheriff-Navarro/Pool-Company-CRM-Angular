@@ -15,6 +15,7 @@ const userSchema = new Schema({
   street: String,
   city: String,
   province: String,
+  zip: Number,
   clients: [{ type: Schema.Types.ObjectId, 'default':[], ref:'Client' }],
   client: {type: Boolean, default: false} //whether its a client or a user.
 

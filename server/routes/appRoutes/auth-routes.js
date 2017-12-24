@@ -114,17 +114,6 @@ router.get('/api/checklogin', (req, res, next) => { // this function verifies if
   res.status(403).json({ message: 'Unauthorized. Please login.' });
 });
 
-//--------------------------------------------------------Show user app route
-router.get('/api/dashboard', (req, res, next) => {
-  if (req.isAuthenticated()) {
-    res.json({ message: 'You\'re loged in! This is your Dashboard.' });
-    return;
-  } // If loged in, show the secret info. Otherwise show unauthorized
-
-  else
-  res.status(403).json({ message: 'Unauthorized. Please login first.' });
-});
-
 //--------------------------------------------------------Add personal details route
 router.put('/api/edit/:id', (req, res) => {
 

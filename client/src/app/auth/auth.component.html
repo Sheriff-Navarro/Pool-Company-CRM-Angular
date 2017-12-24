@@ -6,7 +6,7 @@
 
     <form class="register-form" (ngSubmit)="doSignUp()">
       <input type="email" placeholder="Email Address" [(ngModel)]="signUpInfo.username" name="username"/>
-      <input type="password" placeholder="password" [(ngModel)]="signUpInfo.password" name="passwrod"/>
+      <input type="password" placeholder="password" [(ngModel)]="signUpInfo.password" name="password"/>
       <button>create</button>
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>

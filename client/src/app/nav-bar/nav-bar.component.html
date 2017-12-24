@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/dashboard">Pool Company CRM</a>
+      <a class="navbar-brand" href="/app/dashboard">Pool Company CRM</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
@@ -40,7 +40,7 @@
             <li><a href="/app/settings">Settings</a></li>
             <li><a href="/help">Help</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="/app/logout">Log Out</a></li>
+            <li><button class="btn btn-link" (click)="logMeOutPls()">Log Out</button></li>
           </ul>
         </li>
       </ul>
@@ -57,4 +57,11 @@
       <li role="presentation"><a class="pillLink" href="/app/payments">Payments</a></li>
     </ul>
   </div>
+
+  <div *ngIf="logoutError" class="alert alert-danger" style="margin: 0px;" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    {{ logoutError }}
+  </div>
+
 </nav>

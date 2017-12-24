@@ -6,20 +6,18 @@ import { AuthService } from "./services/auth.service";
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+//Components
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
-import { LogoutComponent } from './logout/logout.component';
 import { SettingsComponent } from './settings/settings.component';
 
-
-
 const routes: Routes = [
-  { path: '', redirectTo: 'app/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
   { path: 'app/login',  component: AuthComponent },
   { path: 'app/dashboard', component: DashboardComponent },
-  { path: 'app/logout',  component:  LogoutComponent},
-  { path: 'app/settings',  component:  SettingsComponent},
+  { path: 'app/settings',  component:  SettingsComponent },
   { path: '**', component: ErrorComponent }
 ];
 
@@ -30,8 +28,7 @@ const routes: Routes = [
     NavBarComponent,
     DashboardComponent,
     ErrorComponent,
-    LogoutComponent,
-    SettingsComponent
+    SettingsComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),  //  <!-- "routes" is the array defined above
