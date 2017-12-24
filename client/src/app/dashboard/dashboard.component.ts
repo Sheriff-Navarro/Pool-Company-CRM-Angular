@@ -25,6 +25,5 @@ export class DashboardComponent implements OnInit {
       .catch(() => {
           this.router.navigate(['/app/login']);
       });
-
   }
 }
