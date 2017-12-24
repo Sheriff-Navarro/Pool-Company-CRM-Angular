@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth.service';
 
 export class AuthComponent implements OnInit {
   isLoggedOut: boolean = false;
+  loginSwitch: boolean = false;
 
   signUpInfo = {
     username: '',
@@ -63,6 +64,7 @@ export class AuthComponent implements OnInit {
           this.errorMessage = parsedError.message + ' ';
       });
   } // close doSignUp()
+
   doLogin() {
     this.authService.login(this.loginInfo)
       .then((resultFromApi) => {
