@@ -9,8 +9,9 @@ var cors          = require('cors')
 
 const passport    = require('passport');
 const session     = require('express-session');
-const indexRoutes = require('./routes/appRoutes/auth-routes');
-const authRoutes  = require('./routes/appRoutes/auth-routes');
+const indexRoutes = require('./routes/auth-routes');
+const authRoutes  = require('./routes/auth-routes');
+const usersRoutes = require('./routes/users-routes');
 
 require('./config/database-setup');
 require('./config/passport-setup');
@@ -42,7 +43,8 @@ app.use(cors({
 
 //ROUTES -------------------------------------
 app.use('/', indexRoutes);
-app.use('/app', authRoutes);
+app.use('/', authRoutes);
+app.use('/', usersRoutes);
 //-------------------------------------
 
 app.use((req, res, next) => {

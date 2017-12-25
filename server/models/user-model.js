@@ -8,23 +8,24 @@ const userSchema = new Schema({
   username: {type: String, required: true, unique: true, lowercase: true},
   password: {type: String, required: true},
   // user personal info
+  userDetails: {
+    firstName: String,
+    lastName: String,
+    companyName: String,
+    primaryPhone: Number,
+    street1: String,
+    street2: String,
+    city: String,
+    province: String,
+    zip: Number,
+  },//whether its a client or a user.
   avatarUrl:{
-			type: String,
-			required: false,
-			default: "http://laoblogger.com/images/default-profile-picture-5.jpg"
-		},
-
-  firstName: String,
-  lastName: String,
-  companyName: String,
-  primaryPhone: Number,
-  street1: String,
-  street2: String,
-  city: String,
-  province: String,
-  zip: Number,
-  clients: [{ type: Schema.Types.ObjectId, 'default':[], ref:'Client' }],
-  client: {type: Boolean, default: false} //whether its a client or a user.
+    type: String,
+    required: false,
+    default: "http://laoblogger.com/images/default-profile-picture-5.jpg"
+  },
+  isClient: {type: Boolean, default: false},
+  userClients: [{ type: Schema.Types.ObjectId, 'default':[], ref:'Client' }],
 
 }); // closing the userSchema
 

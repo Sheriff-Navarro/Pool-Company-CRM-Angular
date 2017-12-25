@@ -2,7 +2,7 @@ const express    = require('express');
 const mongoose   = require('mongoose');
 const bcrypt     = require('bcrypt');
 const passport   = require('passport');
-const User       = require('../../models/user-model');
+const User       = require('../models/user-model');
 
 const router = express.Router();
 
@@ -121,55 +121,55 @@ router.get('/api/checklogin', (req, res, next) => { // this function verifies if
 });
 
 //--------------------------------------------------------Add personal details route
-router.put('/api/edit/:id', (req, res) => {
-
-  if(!mongoose.Types.ObjectId.isValid(req.params.id)) { // Checks if the user id exists
-    res.status(400).json({ message: 'Specified id is not valid. Try another one.' });
-    return;
-  }
-
-  const update = {
-    firstName : req.body.firstName,
-    lastName : req.body.lastName,
-    // companyName : req.body.companyName,
-    // primaryphone : req.body.primaryPhone,
-    // street1 : req.body.street1,
-    // street2 : req.body.street2,
-    // city : req.body.city,
-    // province : req.body.province,
-    // zip : req.body.zip
-  };
-
-  User.findByIdAndUpdate(req.params.id, update, (err) => {
-    if (err) {
-      res.json(err);
-      return;
-    }
-
-    res.json({
-      message: 'User account updated successfully!'
-    });
-  });
-});
-
-//-------------------------------------------------------- Delete account route
-router.delete('/api/delete/:id', (req, res) => {
-  // Checks if user ID is valid in the URL
-  if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(400).json({ message: 'Specified id is not valid. Try another one.' });
-    return;
-  }
-
-  User.remove({ _id: req.params.id }, (err) => {
-    if (err) {
-      res.json(err);
-      return;
-    }
-
-    return res.json({
-      message: 'User has been deleted from the database.'
-    });
-  })
-});
+// router.put('/api/edit/:id', (req, res) => {
+//
+//   if(!mongoose.Types.ObjectId.isValid(req.params.id)) { // Checks if the user id exists
+//     res.status(400).json({ message: 'Specified id is not valid. Try another one.' });
+//     return;
+//   }
+//
+//   const update = {
+//     firstName : req.body.firstName,
+//     lastName : req.body.lastName,
+//     // companyName : req.body.companyName,
+//     // primaryphone : req.body.primaryPhone,
+//     // street1 : req.body.street1,
+//     // street2 : req.body.street2,
+//     // city : req.body.city,
+//     // province : req.body.province,
+//     // zip : req.body.zip
+//   };
+//
+//   User.findByIdAndUpdate(req.params.id, update, (err) => {
+//     if (err) {
+//       res.json(err);
+//       return;
+//     }
+//
+//     res.json({
+//       message: 'User account updated successfully!'
+//     });
+//   });
+// });
+//
+// //-------------------------------------------------------- Delete account route
+// router.delete('/api/delete/:id', (req, res) => {
+//   // Checks if user ID is valid in the URL
+//   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+//     res.status(400).json({ message: 'Specified id is not valid. Try another one.' });
+//     return;
+//   }
+//
+//   User.remove({ _id: req.params.id }, (err) => {
+//     if (err) {
+//       res.json(err);
+//       return;
+//     }
+//
+//     return res.json({
+//       message: 'User has been deleted from the database.'
+//     });
+//   })
+// });
 
 module.exports = router;
