@@ -14,10 +14,12 @@ router.post('/api/signup', (req, res, next) => {
   // const firstName = req.body.firstName;
   // const lastName = req.body.lastName;
   // const companyName = req.body.companyName;
-  // const phonePrimary = req.body.phonePrimary;
-  // const street = req.body.street;
+  // const primaryPhone = req.body.phonePrimary;
+  // const street1 = req.body.street;
+  // const street2 = req.body.street;
   // const city = req.body.city;
   // const province = req.body.province;
+  // const zip = req.body.province;
 
   //second step of sign up
   if (!username || !password) {
@@ -40,10 +42,12 @@ router.post('/api/signup', (req, res, next) => {
       // firstName: firstName,
       // lastName: lastName,
       // companyName: companyName,
-      // phonePrimary: phonePrimary,
-      // street: street,
+      // primaryPhone: primaryPhone,
+      // street1: street1,
+      // street2: street2,
       // city: city,
       // province: province,
+      // zip: zip,
     });
 
     theUser.save((err) => {
@@ -125,11 +129,13 @@ router.put('/api/edit/:id', (req, res) => {
   const update = {
     firstName : req.body.firstName,
     lastName : req.body.lastName,
-    companyName : req.body.companyName,
-    phonePrimary : req.body.phonePrimary,
-    street : req.body.street,
-    city : req.body.city,
-    province : req.body.province
+    // companyName : req.body.companyName,
+    // primaryphone : req.body.primaryPhone,
+    // street1 : req.body.street1,
+    // street2 : req.body.street2,
+    // city : req.body.city,
+    // province : req.body.province,
+    // zip : req.body.zip
   };
 
   User.findByIdAndUpdate(req.params.id, update, (err) => {

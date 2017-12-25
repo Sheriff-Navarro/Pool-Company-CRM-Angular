@@ -10,16 +10,27 @@ import { AuthService } from '../services/auth.service';
 
 export class AuthComponent implements OnInit {
   isLoggedOut: boolean = false;
-  loginSwitch: boolean = false;
+  loginSwitch: boolean = false; //false = login and true = sign up
+  // signUpInfoForm: boolean = false;
 
-  signUpInfo = {
+
+  completedSignupForm = {
     username: '',
-    password: ''
+    password: '',
+    // firstName: '',
+    // lastName: '',
+    // companyName: '',
+    // primaryPhone: '',
+    // street1: '',
+    // street2: '',
+    // city: '',
+    // province: '',
+    // zip: '',
   };
 
   errorMessage: string;
 
-  loginInfo = {
+  loginForm = {
     username: '',
     password: ''
   };
@@ -45,12 +56,21 @@ export class AuthComponent implements OnInit {
   }
 
   doSignUp() {
-    this.authService.signup(this.signUpInfo)
+    this.authService.signup(this.completedSignupForm)
       .then((resultFromApi) => {
           // clear form
-          this.signUpInfo = {
+          this.completedSignupForm = {
             username: '',
-            password: ''
+            password: '',
+            // firstName: '',
+            // lastName: '',
+            // companyName: '',
+            // primaryPhone: '',
+            // street1: '',
+            // street2: '',
+            // city: '',
+            // province: '',
+            // zip: '',
           };
 
           // clear error message
@@ -66,10 +86,10 @@ export class AuthComponent implements OnInit {
   } // close doSignUp()
 
   doLogin() {
-    this.authService.login(this.loginInfo)
+    this.authService.login(this.loginForm)
       .then((resultFromApi) => {
           // clear the form
-          this.loginInfo = {
+          this.loginForm = {
             username: '',
             password: ''
           };
