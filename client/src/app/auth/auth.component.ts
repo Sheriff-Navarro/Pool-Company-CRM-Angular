@@ -17,6 +17,7 @@ export class AuthComponent implements OnInit {
   completedSignupForm = {
     username: '',
     password: '',
+    avatarUrl: '',
     // firstName: '',
     // lastName: '',
     // companyName: '',
@@ -62,6 +63,7 @@ export class AuthComponent implements OnInit {
           this.completedSignupForm = {
             username: '',
             password: '',
+            avatarUrl: '',
             // firstName: '',
             // lastName: '',
             // companyName: '',

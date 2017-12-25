@@ -11,6 +11,7 @@ router.post('/api/signup', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
+  const avatarUrl = req.body.avatarUrl;
   // const firstName = req.body.firstName;
   // const lastName = req.body.lastName;
   // const companyName = req.body.companyName;
@@ -39,6 +40,7 @@ router.post('/api/signup', (req, res, next) => {
     const theUser = new User({
       username: username,
       password: hashPass,
+      avatarUrl: avatarUrl,
       // firstName: firstName,
       // lastName: lastName,
       // companyName: companyName,
