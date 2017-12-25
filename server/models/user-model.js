@@ -8,6 +8,12 @@ const userSchema = new Schema({
   username: {type: String, required: true, unique: true, lowercase: true},
   password: {type: String, required: true},
   // user personal info
+  avatarUrl:{
+			type: String,
+			required: false,
+			default: "http://laoblogger.com/images/default-profile-picture-5.jpg"
+		},
+
   firstName: String,
   lastName: String,
   companyName: String,
