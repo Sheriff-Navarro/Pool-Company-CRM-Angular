@@ -2,33 +2,52 @@
 
 body {
   background: DodgerBlue; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, Blue , DodgerBlue);
-  background: -moz-linear-gradient(right, Blue , DodgerBlue );
-  background: -o-linear-gradient(right, Blue , DodgerBlue );
-  background: linear-gradient(to left, Blue , DodgerBlue );
+  background: -webkit-linear-gradient(right, #0080ff, #2196F3);
+  background: -moz-linear-gradient(right, #0080ff, #2196F3 );
+  background: -o-linear-gradient(right, #0080ff, #2196F3 );
+  background: linear-gradient(to right, #0080ff, #2196F3 );
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .card {
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-    transition: 0.3s;
-    width: 100%;
-    background-color: white;
-    color: black;
-    border-radius: 5px; /* 5px rounded corners */
-    padding: 20px 20px 25px 25px;
+  transition: 0.3s;
+  width: 100%;
+  background-color: white;
+  color: black;
+  border-radius: 5px; /* 5px rounded corners */
+  padding: 25px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-a {
-  color: DodgerBlue;
+.btn-primary {
+  background-color: #0080ff;
+  border: 0px;
 }
 
-/* a:hover {
-  color: blue;
-} */
+.btn-primary:hover, .btn-primary:active .btn-primary:focus {
+  background-color: #0059b3;
+  border: 0px;
+}
+
+.navbar{
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.navbar:hover{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.bg-danger {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px; /* 5px rounded corners */
+  border: 1px solid red;
+}

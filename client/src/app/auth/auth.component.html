@@ -1,29 +1,34 @@
-<div class="login-page">
+<div class="card center-block text-center" *ngIf="loginSwitch === true">
+  <span *ngIf="errorMessage"><h1>🤦</h1><p class="bg-danger">{{ errorMessage }}</p></span>
 
-  <div *ngIf="loginSwitch === true">
-    <div class="card">
-      <h1 *ngIf="errorMessage">🤦</h1><p *ngIf="errorMessage" class="error" style="color: red; font-weight: 700;">{{ errorMessage }}</p>
-
-      <form class="register-form" (ngSubmit)="doSignUp()">
-        <input type="email" placeholder="Email Address" [(ngModel)]="signUpInfo.username" name="username"/>
-        <input type="password" placeholder="password" [(ngModel)]="signUpInfo.password" name="password"/>
-        <button>create</button>
-      </form>
-
-      <p class="message">Already registered? <a href="/app/login#" (click)="loginSwitch = false">Sign In</a></p>
+  <form class="" (ngSubmit)="doSignUp()">
+    <div class="form-group">
+      <label class="sr-only" for="username">Email</label>
+      <input type="email" class="form-control" placeholder="Email Address" [(ngModel)]="signUpInfo.username" name="username"/>
     </div>
-  </div>
+    <div class="form-group">
+      <label class="sr-only" for="password">Password</label>
+      <input type="password" class="form-control" placeholder="Password" [(ngModel)]="signUpInfo.password" name="password"/>
+    </div><button class="btn btn-primary btn-lg btn-block">Create</button>
+  </form>
 
-  <div *ngIf="loginSwitch === false">
-    <div class="card">
-      <h1 *ngIf="loginErrorMessage">🤦</h1><p *ngIf="loginErrorMessage" class="error" style="color: red; font-weight: 700;">{{ loginErrorMessage }}</p>
+  <p class="text-muted">Already registered? <a href="/app/login#" (click)="loginSwitch = false">Sign In</a></p>
+</div>
 
-      <form class="login-form" (ngSubmit)="doLogin()">
-        <input type="email" placeholder="Email Address" [(ngModel)]="loginInfo.username" name="username" required focus/>
-        <input type="password" placeholder="Password" [(ngModel)]="loginInfo.password" name="password" required/>
-        <button>login</button>
-      </form>
+<div class="card center-block text-center" *ngIf="loginSwitch === false" >
+  <span *ngIf="loginErrorMessage"><h1>🤦</h1><p class="bg-danger">{{ loginErrorMessage }}</p></span>
 
-      <p class="message">Not registered? <a href="app/login#" (click)="loginSwitch = true">Create an account</a></p>
+  <form class="" (ngSubmit)="doLogin()">
+    <div class="form-group">
+      <label class="sr-only" for="username">Email</label>
+      <input type="email" class="form-control"placeholder="Email Address" [(ngModel)]="loginInfo.username" name="username"/>
     </div>
-  </div>
+    <div class="form-group">
+      <label class="sr-only" for="password">Password</label>
+      <input type="password" class="form-control" placeholder="Password" [(ngModel)]="loginInfo.password" name="password"/>
+    </div>
+    <button class="btn btn-primary btn-lg btn-block">Login</button>
+  </form>
+
+  <p class="text-muted">Not registered? <a href="app/login#" (click)="loginSwitch = true">Create an account</a></p>
+</div>
