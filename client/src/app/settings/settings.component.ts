@@ -14,6 +14,18 @@ export class SettingsComponent implements OnInit {
 
   currentUser = {
     avatarUrl: '',
+    firstName: '',
+    lastName: '',
+    username: '',
+    // password: '',
+    companyName: '',
+    primaryPhone: '',
+    street1: '',
+    street2: '',
+    city: '',
+    province: '',
+    zip: '',
+    isClient: ''
   };
 
   constructor(

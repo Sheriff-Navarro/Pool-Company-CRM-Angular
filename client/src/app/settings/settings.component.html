@@ -5,9 +5,8 @@
     <div class="card">
       <img src="{{currentUser.avatarUrl}}" alt="User profile photo" class="profilePic center-block img-rounded" style="">
       <div class="text-center">
-        <h3>Aaron Molina</h3>
-        <h5>Owner at Pool Cleaning Co.</h5>
-        <a href="/app/settings#" ng-click="getPrivateData()">get user details</a>
+        <h3>{{ currentUser.firstName }} {{ currentUser.lastName }}</h3>
+        <h5>Owner at {{ currentUser.companyName }}</h5>
       </div>
 
     </div>
@@ -39,39 +38,39 @@ Phone:+1-234-5678 -->
           <tbody>
             <tr>
             <th class="text-muted">First Name:</th>
-            <th>Aaron</th>
+            <th>{{ currentUser.firstName }}</th>
             <th class="text-muted">Last Name:</th>
-            <th>Molina</th>
+            <th>{{ currentUser.lastName }}</th>
           </tr>
           <tr>
             <th class="text-muted">Email:</th>
-            <th>aaron@gmail.com</th>
+            <th>{{ currentUser.username }}</th>
             <th class="text-muted">Password:</th>
             <th>●●●●●●●●<a href="#" style="float: right;">Change</a></th>
           </tr>
 
           <tr>
             <th class="text-muted">Company Name:</th>
-            <th>Pool Cleaning Co.</th>
+            <th>{{ currentUser.companyName }}</th>
             <th class="text-muted">Phone:</th>
-            <th>305-555-5555</th>
+            <th>{{ currentUser.primaryPhone }}</th>
           </tr> <br>
 
           <thead>
             <tr>Address</tr>
           </thead>
           <tr>
-            <th class="text-muted">Street</th>
-            <th>123 SW 67th st</th>
-            <th class="text-muted">City</th>
-            <th>Miami</th>
+            <th class="text-muted">Street:</th>
+            <th>{{ currentUser.street1 }}</th>
+            <th class="text-muted">City:</th>
+            <th>{{ currentUser.city }}</th>
           </tr>
 
           <tr>
-            <th class="text-muted">Provice</th>
-            <th>FL</th>
-            <th class="text-muted">Zip</th>
-            <th>33133</th>
+            <th class="text-muted">Provice:</th>
+            <th>{{ currentUser.province }}</th>
+            <th class="text-muted">Zip:</th>
+            <th>{{ currentUser.zip }}</th>
           </tr>
 
         </tbody>
