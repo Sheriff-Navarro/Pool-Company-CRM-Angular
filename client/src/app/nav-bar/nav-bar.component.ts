@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
@@ -10,6 +10,8 @@ import { UsersService } from '../services/users.service';
 })
 export class NavBarComponent implements OnInit {
 
+  // @Input() username: string;
+  // @Input() profilePicUrl: string;
   currentUser = {
     avatarUrl: '',
     firstName: '',
