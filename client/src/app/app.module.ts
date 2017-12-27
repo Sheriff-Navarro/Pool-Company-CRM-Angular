@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthService } from "./services/auth.service";
 import { UsersService } from "./services/users.service";
+import { SharedService } from "./services/shared.service";
+
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -39,7 +41,7 @@ const routes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [AuthService, UsersService],
+  providers: [AuthService, UsersService, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
