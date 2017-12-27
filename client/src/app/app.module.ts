@@ -13,6 +13,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 import { SettingsComponent } from './settings/settings.component';
+import { PostSignupComponent } from './post-signup/post-signup.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
@@ -30,6 +31,7 @@ const routes: Routes = [
     DashboardComponent,
     ErrorComponent,
     SettingsComponent,
+    PostSignupComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),  //  <!-- "routes" is the array defined above
