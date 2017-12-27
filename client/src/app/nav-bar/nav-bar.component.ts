@@ -24,6 +24,7 @@ export class NavBarComponent implements OnInit {
   ) { }
 
   logoutError: string;
+  loadingNavError: string;
 
   ngOnInit() {
     this.AuthService.checklogin()
@@ -33,9 +34,9 @@ export class NavBarComponent implements OnInit {
       this.currentUser =  userFromApi  })
     })
     .catch(() => {
-      this.logoutError = 'Something went wrong. Please try to logout again.';
+      this.loadingNavError = 'Something went wrong loading the Nav-Bar';
     });
-
+    
   }
 
   logMeOutPls() {
