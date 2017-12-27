@@ -1,44 +1,22 @@
-<!-- <div class="card center-block text-center" *ngIf="loginSwitch === true"> -->
 <div class="card center-block text-center" *ngIf="loginSwitch === true">
   <span *ngIf="errorMessage"><h1>🤦</h1><p class="bg-danger">{{ errorMessage }}</p></span>
   <!-- email and password -->
   <form (ngSubmit)="doSignUp()">
-    <!-- <div class="form-group" *ngIf="loginSwitch === true && signUpInfoForm === false"> -->
     <div class="form-group">
       <label class="sr-only" for="username">Email</label>
       <input type="email" class="form-control" placeholder="Email Address" [(ngModel)]="completedSignupForm.username" name="username"/>
     </div>
-    <!-- <div class="form-group" *ngIf="loginSwitch === true && signUpInfoForm === false"> -->
       <div class="form-group">
       <label class="sr-only" for="password">Password</label>
       <input type="password" class="form-control" placeholder="Password" [(ngModel)]="completedSignupForm.password" name="password"/>
     </div>
-    <!-- <button type="submit" class="btn btn-primary btn-lg btn-block" *ngIf="signUpInfoForm === false" (click)="signUpInfoForm = true">Create</button> -->
     <button type="submit" class="btn btn-primary btn-lg btn-block">Create</button>
 </form>
-    <!-- Contact info form -->
-    <!-- <div style="form-group" *ngIf="signUpInfoForm === true">
-      <input type="text" placeholder="John" [(ngModel)]="signUpInfo.firstName" name="firstName"/>
-      <input type="text" placeholder="Doe" [(ngModel)]="signUpInfo.lastName" name="lastName"/>
-    </div>
-    <div style="form-group" *ngIf="signUpInfoForm === true">
-      <input type="text" placeholder="Company Name" [(ngModel)]="signUpInfo.companyName" name="companyName"/>
-      <input type="text" placeholder="555-555-5555" [(ngModel)]="signUpInfo.primaryPhone" name="phone"/>
-    </div>
-    <div style="form-group" *ngIf="signUpInfoForm === true">
-      <input type="text" placeholder="123 SW 132ND ave" [(ngModel)]="signUpInfo.street1" name="street1"/>
-      <input type="text" placeholder="UNIT 118" [(ngModel)]="signUpInfo.street2" name="street2"/>
-      <input type="text" placeholder="City" [(ngModel)]="signUpInfo.city" name="city"/>
-      <input type="text" placeholder="Province/State" [(ngModel)]="signUpInfo.province" name="province"/>
-      <input type="text" placeholder="33186" [(ngModel)]="signUpInfo.zip" name="zip"/>
-    </div>
-    <a class="btn btn-primary btn-lg btn-block" *ngIf="doLogin()">Do to Dashboard</a>
-  </form> -->
+
   <div class="row">
   <p class="text-muted">Already registered? <a href="/app/login#" (click)="loginSwitch = false">Sign In</a></p>
 </div>
 </div>
-
 
 <div class="card center-block text-center" *ngIf="loginSwitch === false" >
   <span *ngIf="loginErrorMessage"><h1>🤦</h1><p class="bg-danger">{{ loginErrorMessage }}</p></span>
