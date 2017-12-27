@@ -90,10 +90,8 @@ export class AuthService {
         // Parse the JSON
         .then(res => res.json());
   } // close checklogin()
+
 }
-
-
-
 
 // // import { Injectable } from '@angular/core';
 // //
