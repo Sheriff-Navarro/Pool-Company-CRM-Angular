@@ -40,7 +40,7 @@ router.post('/api/signup', (req, res, next) => {
     const theUser = new User({
       username: username,
       password: hashPass,
-      avatarUrl: avatarUrl,
+      // avatarUrl: avatarUrl,
       // firstName: firstName,
       // lastName: lastName,
       // companyName: companyName,
@@ -117,7 +117,7 @@ router.get('/api/checklogin', (req, res, next) => { // this function verifies if
   }// Checking if loged in or not
 
   else // otherwise res serve 403 (forbidden)
-  res.status(403).json({ message: 'Unauthorized. Please login.' });
+    res.status(403).json({ message: 'Unauthorized. Please login.' });
 });
 
 //--------------------------------------------------------Add personal details route
