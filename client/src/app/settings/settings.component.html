@@ -6,7 +6,7 @@
       <img src="{{ currentUser.avatarUrl }}" alt="User profile photo" class="profilePic center-block img-rounded" style="">
       <div class="text-center">
         <h3>{{ currentUser.firstName }} {{ currentUser.lastName }}</h3>
-        <h5>Owner at {{ currentUser.companyName }}</h5>
+        <span style=" display: inline-block; vertical-align: top;">Owner</span><span *ngIf="currentUser.companyName"> at {{ currentUser.companyName }}</span>
       </div>
 
     </div>
@@ -74,6 +74,9 @@ Phone:+1-234-5678 -->
           </tr>
         </tbody>
         </table>
+        <div class="text-right">
+        <a id="deleteButton" href="/app/settings#" (click)="deleteUser()">Delete Account</a>
       </div>
+      </div> <!-- closing card div -->
     </div>
 </div>

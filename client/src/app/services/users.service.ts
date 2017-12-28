@@ -41,4 +41,19 @@ export class UsersService {
       // Parse the JSON
       .then(res => res.json());
     } // close signup()
+
+    deleteUser() {
+      return this.http
+      .delete(
+        `${environment.apiBase}/api/user/delete`,
+        // Send the cookies across domains
+        { withCredentials: true }
+      )
+      // Convert from observable to promise
+      .toPromise()
+      // Parse the JSON
+      .then(res => res.json());
+    } // close signup()
+
+
   }

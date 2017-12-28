@@ -12,6 +12,8 @@ import { environment } from '../../environments/environment';
 
 export class SettingsComponent implements OnInit {
 
+  errorMessage = "";
+
   currentUser = {
     avatarUrl: '',
     firstName: '',
@@ -44,5 +46,20 @@ export class SettingsComponent implements OnInit {
       .catch(() => {
           this.router.navigate(['/app/login']);
       });
+    }
+
+    deleteUser(){
+      this.UsersService.deleteUser()
+        .then((resultFromApi) => {
+            // clear error message
+            this.errorMessage = "";
+
+            // redirect to /camels
+            this.router.navigate(['/app/login']);
+        })
+        .catch((err) => {
+            const parsedError = err.json();
+            this.errorMessage = parsedError.message + ' ';
+        });
     }
 }
