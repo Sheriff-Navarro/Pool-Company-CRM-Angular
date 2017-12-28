@@ -1,6 +1,8 @@
+<app-nav-bar></app-nav-bar>
+
 <div class="card center-block">
   <a href="/app/settings" class="btn btn-secondary" style="float: right; color: black;"><span class="glyphicon glyphicon-remove"></span></a>
-  <h1 class="text-center page-header">Your Account Details</h1>
+  <h1 class="text-center page-header">Edit Account Details</h1>
   <span *ngIf="errorMessage"><h1>🤦</h1><p class="bg-danger">{{ errorMessage }}</p></span>
 
   <form (ngSubmit)="updateUserAccount()">
