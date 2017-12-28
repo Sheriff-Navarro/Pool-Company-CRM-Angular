@@ -1,37 +1,32 @@
-  <div class="card center-block text-center">
-    <h1>Enter your account details</h1>
-    <span *ngIf="errorMessage"><h1>🤦</h1><p class="bg-danger">{{ errorMessage }}</p></span>
+<div class="card center-block">
+  <a href="/app/settings" class="btn btn-secondary" style="float: right; color: black;"><span class="glyphicon glyphicon-remove"></span></a>
+  <h1 class="text-center page-header">Your Account Details</h1>
+  <span *ngIf="errorMessage"><h1>🤦</h1><p class="bg-danger">{{ errorMessage }}</p></span>
+
   <form (ngSubmit)="updateUserAccount()">
-    <div style="form-group">
-      <label for="firstName">First name</label>
-      <input type="text" placeholder="John" [(ngModel)]="FormData.firstName" name="firstName" value="{{FormData.firstName}}"/>
-      <label for="lastName">Last name</label>
-      <input type="text" placeholder="Doe" [(ngModel)]="FormData.lastName" name="lastName" value="{{FormData.lastName}}"/>
+    <div class="col-md-6">
+      <label for="firstName">First name</label><br>
+      <input class="form-control" type="text" placeholder="John" [(ngModel)]="FormData.firstName" name="firstName" value="{{FormData.firstName}}"/><br>
+      <label for="companyName">Company name</label><br>
+      <input class="form-control" type="text" placeholder="Company Name" [(ngModel)]="FormData.companyName" name="companyName" value="{{FormData.companyName}}"/><br>
+      <label for="street1">Street</label><br>
+      <input class="form-control" type="text" placeholder="123 SW 132ND ave" [(ngModel)]="FormData.street1" name="street1" value="{{FormData.street1}}"/><br>
+      <label for="city">City</label><br>
+      <input class="form-control" type="text" placeholder="City" [(ngModel)]="FormData.city" name="city" value="{{FormData.city}}"/><br>
+      <label for="zip">Postal/Zip code</label><br>
+      <input class="form-control" type="text" placeholder="33186" [(ngModel)]="FormData.zip" name="zip" value="{{FormData.zip}}"/><br>
     </div>
 
-    <div style="form-group">
-      <label for="companyName">Company name</label>
-      <input type="text" placeholder="Company Name" [(ngModel)]="FormData.companyName" name="companyName" value="{{FormData.companyName}}"/>
-      <label for="primaryPhone">Phone</label>
-      <input type="text" placeholder="555-555-5555" [(ngModel)]="FormData.primaryPhone" name="primaryPhone" value="{{FormData.primaryPhone}}"/>
+    <div class="col-md-6">
+      <label for="lastName">Last name</label><br>
+      <input class="form-control" type="text" placeholder="Doe" [(ngModel)]="FormData.lastName" name="lastName" value="{{FormData.lastName}}"/><br>
+      <label for="primaryPhone">Phone</label><br>
+      <input class="form-control" type="tel" placeholder="555-555-5555" [(ngModel)]="FormData.primaryPhone" name="primaryPhone" value="{{FormData.primaryPhone}}"/><br>
+      <label for="street2">Street 2</label><br>
+      <input class="form-control" type="text" placeholder="UNIT 118" [(ngModel)]="FormData.street2" name="street2" value="{{FormData.street2}}"/><br>
+      <label for="province">State</label><br>
+      <input class="form-control" type="text" placeholder="Province/State" [(ngModel)]="FormData.province" name="province" value="{{FormData.province}}"/><br>
     </div>
-
-    <div style="form-group">
-      <label for="street1">Street</label>
-      <input type="text" placeholder="123 SW 132ND ave" [(ngModel)]="FormData.street1" name="street1" value="{{FormData.street1}}"/>
-
-      <label for="street2">Street 2 (optional)</label>
-      <input type="text" placeholder="UNIT 118" [(ngModel)]="FormData.street2" name="street2" value="{{FormData.street2}}"/>
-
-      <label for="city">City</label>
-      <input type="text" placeholder="City" [(ngModel)]="FormData.city" name="city" value="{{FormData.city}}"/>
-
-      <label for="province">State</label>
-      <input type="text" placeholder="Province/State" [(ngModel)]="FormData.province" name="province" value="{{FormData.province}}"/>
-
-      <label for="zip">Postal/Zip code</label>
-      <input type="text" placeholder="33186" [(ngModel)]="FormData.zip" name="zip" value="{{FormData.zip}}"/>
-    </div>
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Go to Dashboard</button>
+    <button type="submit" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-home"></span>Go to Dashboard</button>
   </form>
 </div>
