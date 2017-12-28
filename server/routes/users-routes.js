@@ -10,9 +10,9 @@ router.get('/api/user', (req, res, next) => {
   }
 });
 
-  //-------------------------------------------------------- Edit admin route
-  router.put('/api/user/edit', (req, res) => {
-    if (req.isAuthenticated()) {
+//-------------------------------------------------------- Edit admin route
+router.put('/api/user/edit', (req, res) => {
+  if (req.isAuthenticated()) {
     // if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     //   res.status(400).json({ message: 'Specified id is not valid' });
     //   return;
@@ -42,27 +42,43 @@ router.get('/api/user', (req, res, next) => {
     });
   }
   else // otherwise res serve 403 (forbidden)
-    res.status(403).json({ message: 'Unauthorized. Please login.' });
+  res.status(403).json({ message: 'Unauthorized. Please login.' });
 });
 
-  // //-------------------------------------------------------- Delete admin route
-  // router.delete('/delete/:id', (req, res) => {
-  //   // Checks if user ID is valid in the URL
-  //   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
-  //     res.status(400).json({ message: 'Specified id is not valid' });
-  //     return;
-  //   }
-  //
-  //   User.remove({ _id: req.params.id }, (err) => {
-  //     if (err) {
-  //       res.json(err);
-  //       return;
-  //     }
-  //
-  //     return res.json({
-  //       message: 'User has been Deleted'
-  //     });
-  //   })
-  // });
+router.delete('/api/user/delete', (req, res) => {
+  if (req.isAuthenticated()) {
 
-  module.exports = router;
+    User.findByIdAndRemove(req.user.id, (err) => {
+      if (err) {
+        res.json({message: 'Something went wrong. Please Try again.'});
+        return;
+      }
+
+      res.json({message: 'Account Deleted!'});
+    });
+  }
+  else // otherwise res serve 403 (forbidden)
+  res.status(403).json({ message: 'You can\'t do that. Please log in first.' });
+});
+
+// //-------------------------------------------------------- Delete admin route
+// router.delete('/delete/:id', (req, res) => {
+//   // Checks if user ID is valid in the URL
+//   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+//     res.status(400).json({ message: 'Specified id is not valid' });
+//     return;
+//   }
+//
+//   User.remove({ _id: req.params.id }, (err) => {
+//     if (err) {
+//       res.json(err);
+//       return;
+//     }
+//
+//     return res.json({
+//       message: 'User has been Deleted'
+//     });
+//   })
+// });
+
+module.exports = router;
