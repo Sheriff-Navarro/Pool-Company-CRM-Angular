@@ -14,7 +14,7 @@ export class NavBarComponent implements OnInit {
   // @Input() profilePicUrl: string;
   currentUser = {
     avatarUrl: '',
-    firstName: '',
+    username: ''
 }
 
   constructor(
@@ -36,7 +36,7 @@ export class NavBarComponent implements OnInit {
     .catch(() => {
       this.loadingNavError = 'Something went wrong loading the Nav-Bar';
     });
-    
+
   }
 
   logMeOutPls() {

@@ -11,17 +11,16 @@ router.get('/api/user', (req, res, next) => {
 });
 
   //-------------------------------------------------------- Edit admin route
-  router.put('/api/user/edit/:id', (req, res) => {
+  router.put('/api/user/edit', (req, res) => {
     if (req.isAuthenticated()) {
-
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      res.status(400).json({ message: 'Specified id is not valid' });
-      return;
-    }
+    // if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    //   res.status(400).json({ message: 'Specified id is not valid' });
+    //   return;
+    // }
 
 
     const update = {
-      avatarUrl : req.body.avatarUrl,
+      // avatarUrl : req.body.avatarUrl,
       firstName : req.body.firstName,
       lastName : req.body.lastName,
       companyName : req.body.companyName,
@@ -30,9 +29,10 @@ router.get('/api/user', (req, res, next) => {
       street2 : req.body.street2,
       city : req.body.city,
       province : req.body.province,
+      zip: req.body.zip,
     };
 
-    User.findByIdAndUpdate(req.params.id, update, (err) => {
+    User.findByIdAndUpdate(req.user.id, update, (err) => {
       if (err) {
         res.json({message: 'Please fill out all fields before saving.'});
         return;

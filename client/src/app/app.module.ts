@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'app/login',  component: AuthComponent },
   { path: 'app/dashboard', component: DashboardComponent },
   { path: 'app/settings',  component:  SettingsComponent },
+  { path: 'app/post-signup',  component:  PostSignupComponent },
   { path: '**', component: ErrorComponent }
 ];
 

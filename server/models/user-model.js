@@ -12,12 +12,12 @@ const userSchema = new Schema({
   firstName: String,
   lastName: String,
   companyName: String,
-  primaryPhone: Number,
+  primaryPhone: String,
   street1: String,
   street2: String,
   city: String,
   province: String,
-  zip: Number,
+  zip: String,
   // },//whether its a client or a user.
   avatarUrl:{
     type: String,

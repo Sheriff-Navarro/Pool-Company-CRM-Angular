@@ -79,7 +79,7 @@ export class AuthComponent implements OnInit {
           this.errorMessage = "";
 
           // redirect to /camels
-          this.router.navigate(['/app/dashboard']);
+          this.router.navigate(['/app/post-signup']);
       })
       .catch((err) => {
           const parsedError = err.json();
