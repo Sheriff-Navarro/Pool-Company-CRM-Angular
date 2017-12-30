@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthService } from "./services/auth.service";
 import { UsersService } from "./services/users.service";
+import { ClientsService } from "./services/clients.service";
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -14,6 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 import { SettingsComponent } from './settings/settings.component';
 import { PostSignupComponent } from './post-signup/post-signup.component';
+import { NewClientComponent } from './new-client/new-client.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
@@ -21,6 +23,7 @@ const routes: Routes = [
   { path: 'app/dashboard', component: DashboardComponent },
   { path: 'app/settings',  component:  SettingsComponent },
   { path: 'app/post-signup',  component:  PostSignupComponent },
+  { path: 'app/new-client',  component:  NewClientComponent },
   { path: '**', component: ErrorComponent }
 ];
 
@@ -33,6 +36,7 @@ const routes: Routes = [
     ErrorComponent,
     SettingsComponent,
     PostSignupComponent,
+    NewClientComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),  //  <!-- "routes" is the array defined above
@@ -40,7 +44,7 @@ const routes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [AuthService, UsersService],
+  providers: [AuthService, UsersService, ClientsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
