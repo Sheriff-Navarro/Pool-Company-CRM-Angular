@@ -1,7 +1,11 @@
 <div class="card center-block text-center" *ngIf="loginSwitch === true">
   <span *ngIf="errorMessage"><h1>🤦</h1><p class="bg-danger">{{ errorMessage }}</p></span>
+
+
   <!-- email and password -->
   <form (ngSubmit)="doSignUp()">
+    <!-- <h1 *ngIf="loginSwitch = false">Login</h1>
+    <h1 *ngIf="loginSwitch = true">Create</h1> -->
     <div class="form-group">
       <label class="sr-only" for="username">Email</label>
       <input type="email" class="form-control" placeholder="Email Address" [(ngModel)]="completedSignupForm.username" name="username"/>
