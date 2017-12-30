@@ -6,8 +6,9 @@ const clientSchema = new Schema({
   clientOwner: { type: Schema.Types.ObjectId, ref:"User" },
   clientFirstName: String,
   clientLastName: String,
-  clientCompanyName: String,
   clientPrimaryPhone: String,
+  clientUsername: String,
+  // clientCompanyName: String,
   clientStreet1: String,
   clientStreet2: String,
   clientCity: String,
@@ -15,7 +16,6 @@ const clientSchema = new Schema({
   clientZip: String,
 
   //Client portal info
-  // clientUsername: String,
   // clientPassword: String
 
 }); // closing the client

@@ -3,8 +3,6 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { environment } from '../../environments/environment';
 
-
-
 @Injectable()
 export class ClientsService {
 
@@ -21,8 +19,9 @@ export class ClientsService {
       clientFirstName: componentInfo.clientFirstName,
       // clientOwner : componentInfo.clientOwner,
       clientLastName: componentInfo.clientLastName,
-      clientCompanyName: componentInfo.clientCompanyName,
+      // clientCompanyName: componentInfo.clientCompanyName,
       clientPrimaryPhone: componentInfo.clientPrimaryPhone,
+      clientUsername: componentInfo.clientUsername,
       clientStreet1: componentInfo.clientStreet1,
       clientStreet2: componentInfo.clientStreet2,
       clientCity: componentInfo.clientCity,

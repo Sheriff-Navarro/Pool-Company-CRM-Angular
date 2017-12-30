@@ -43,7 +43,8 @@ router.post('/api/new-client', (req, res, next) => {
   const clientFirstName = req.body.clientFirstName;
   const clientOwner = req.user.id;
   const clientLastName = req.body.clientLastName;
-  const clientCompanyName = req.body.clientCompanyName;
+  // const clientCompanyName = req.body.clientCompanyName;
+  const clientUsername = req.body.clientUsername;
   const clientPrimaryPhone = req.body.clientPrimaryPhone;
   const clientStreet1 = req.body.clientStreet1;
   const clientStreet2 = req.body.clientStreet2;
@@ -58,8 +59,9 @@ router.post('/api/new-client', (req, res, next) => {
       clientFirstName: clientFirstName,
       clientOwner : clientOwner,
       clientLastName: clientLastName,
-      clientCompanyName: clientCompanyName,
       clientPrimaryPhone: clientPrimaryPhone,
+      clientUsername: clientUsername,
+      // clientCompanyName: clientCompanyName,
       clientStreet1: clientStreet1,
       clientStreet2: clientStreet2,
       clientCity: clientCity,
