@@ -14,3 +14,10 @@
 button.btn.btn-link {
   color: red;
 }
+
+
+@media only screen and (max-width: 767px) {
+    .nav p {
+        color: white;
+    }
+}
