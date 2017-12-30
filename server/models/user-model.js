@@ -1,7 +1,6 @@
-'use strict';
-const Client = require('./client-model');
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
+
 const userSchema = new Schema({
   // required signup details
   // email: {type: String, unique: true, lowercase: true},
@@ -24,7 +23,7 @@ const userSchema = new Schema({
     required: false,
     default: "http://laoblogger.com/images/default-profile-picture-5.jpg"
   },
-  isClient: {type: Boolean, default: false},
+  isAdmin: {type: Boolean, default: true},
   userClients: [{ type: Schema.Types.ObjectId, 'default':[], ref:'Client' }],
 
 }); // closing the userSchema

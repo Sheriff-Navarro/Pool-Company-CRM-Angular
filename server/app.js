@@ -12,6 +12,7 @@ const session     = require('express-session');
 const indexRoutes = require('./routes/auth-routes');
 const authRoutes  = require('./routes/auth-routes');
 const usersRoutes = require('./routes/users-routes');
+const clientsRoutes = require('./routes/client-routes');
 
 require('./config/database-setup');
 require('./config/passport-setup');
@@ -46,6 +47,7 @@ app.use(cors({
 app.use('/', indexRoutes);
 app.use('/', authRoutes);
 app.use('/', usersRoutes);
+app.use('/', clientsRoutes);
 //-------------------------------------
 
 app.use((req, res, next) => {
