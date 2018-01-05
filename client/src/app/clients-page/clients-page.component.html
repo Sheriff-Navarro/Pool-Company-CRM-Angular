@@ -1,0 +1,15 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="card">
+  <h1>Client Page</h1>
+
+  <p *ngIf="clientListError" class="error">
+    {{ clientListError }}
+  </p>
+
+    <ul>
+      <li *ngFor="let client of clientArray">
+        <h3> {{ client.clientFirstName }} </h3>
+      </li>
+    </ul>
+</div>

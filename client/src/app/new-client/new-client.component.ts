@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
-import {UsersService} from '../services/users.service'
-import {AuthService} from '../services/auth.service'
-import {ClientsService} from '../services/clients.service'
+import { Router } from '@angular/router';
+import {UsersService} from '../services/users.service';
+import {AuthService} from '../services/auth.service';
+import {ClientsService} from '../services/clients.service';
 
 @Component({
   selector: 'app-new-client',

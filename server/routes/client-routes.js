@@ -37,8 +37,6 @@ router.get('/api/get-clients', (req, res, next)=>{
     }
   });
 
-
-
 router.post('/api/new-client', (req, res, next) => {
   const clientFirstName = req.body.clientFirstName;
   const clientOwner = req.user.id;

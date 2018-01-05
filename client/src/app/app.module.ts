@@ -16,6 +16,7 @@ import { ErrorComponent } from './error/error.component';
 import { SettingsComponent } from './settings/settings.component';
 import { PostSignupComponent } from './post-signup/post-signup.component';
 import { NewClientComponent } from './new-client/new-client.component';
+import { ClientsPageComponent } from './clients-page/clients-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'app/settings',  component:  SettingsComponent },
   { path: 'app/post-signup',  component:  PostSignupComponent },
   { path: 'app/new-client',  component:  NewClientComponent },
+  { path: 'app/clients',  component:  ClientsPageComponent },
   { path: '**', component: ErrorComponent }
 ];
 
@@ -37,6 +39,7 @@ const routes: Routes = [
     SettingsComponent,
     PostSignupComponent,
     NewClientComponent,
+    ClientsPageComponent
   ],
   imports: [
     RouterModule.forRoot(routes),  //  <!-- "routes" is the array defined above

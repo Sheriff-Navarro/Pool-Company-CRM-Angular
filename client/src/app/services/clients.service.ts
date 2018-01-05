@@ -47,8 +47,6 @@ getClients() {
     //
     // // Parse the JSON
     // .then(res => res.json()); // close signup()
-
   }
-
 
 }
