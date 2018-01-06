@@ -1,7 +1,8 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="card">
-  <h1>Client Page</h1>
+  <h1>Client Page</h1><hr style="margin-bottom: 50px;">
+
 
   <div *ngIf="clientListError" class="alert alert-danger" style="margin: 0px;" role="alert">
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -24,6 +25,7 @@
           <th>Address</th>
           <th>Phone</th>
           <th>Email</th>
+          <th>Options</th>
         </tr>
       </thead>
       <tbody>
@@ -35,6 +37,8 @@
             {{ client.clientCity }}, {{ client.clientProvince }} {{ client.clientZip }}</th>
             <th class="col-md-2">{{ client.clientPrimaryPhone }}</th>
             <th class="col-md-2">{{ client.clientUsername }}</th>
+            <th class="col-md-2"><a href="app/clients" class="btn btn-danger btn-xs" (click)="toDelClient(client._id)">DELETE</a></th>
+
           </tr>
         </tbody>
         </table>

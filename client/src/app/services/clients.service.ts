@@ -49,4 +49,13 @@ getClients() {
     // .then(res => res.json()); // close signup()
   }
 
+  delClient(id){
+    return this.http
+    .delete(
+      `${environment.apiBase}/api/client/`+id,
+      { withCredentials: true })
+      .map( res => res.json())
+
+  }
+
 }

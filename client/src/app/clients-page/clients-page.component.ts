@@ -35,16 +35,19 @@ export class ClientsPageComponent implements OnInit {
           });
   }
 
+  toDelClient(id) {
+    var clientToDel = this.clientArray;
 
-  getTheClients() {
-    // this.ClientsService.getClients()
-    //   .subscribe(
-    //     (clientList) => {
-    //         this.clientArray = clientList;
-    //     },
-    //     () => {
-    //         this.clientListError = 'No clients yet.';
-    //     });
+    this.ClientsService.delClient(id)
+    .subscribe(data => {
+      if(data.n == 1){
+        for(var i = 0; i < clientToDel.length; i++){
+          if(clientToDel[i]._id == id){
+            clientToDel.splice(i, 1);
+          }
+        }
+      }
+    });
   }
 
 }

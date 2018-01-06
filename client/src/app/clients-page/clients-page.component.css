@@ -4,9 +4,9 @@ tbody {
   /* position: absolute; */
 }
 
-table {
-  height: 450px;
-}
+/* table {
+  max-height: 450px;
+} */
 
 tbody th {
 }

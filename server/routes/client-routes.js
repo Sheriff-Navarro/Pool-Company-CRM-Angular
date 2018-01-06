@@ -84,4 +84,29 @@ router.post('/api/new-client', (req, res, next) => {
   }
 });
 
+router.delete('/api/client/:id', (req, res) => {
+  const clientId = req.params.id
+
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+   res.status(400)
+      .json({ message: 'Specified id is not valid' });
+   return;
+ }
+
+  if (req.isAuthenticated()) {
+
+    Client.findByIdAndRemove(clientId, (err) => {
+      if (err) {
+        res.json({message: 'Something went wrong. Please Try again.'});
+        return;
+      }
+
+      res.json({message: 'Client Deleted!'});
+    });
+  }
+  else // otherwise res serve 403 (forbidden)
+  res.status(403).json({ message: 'You can\'t do that. Please log in first.' });
+});
+
+
 module.exports = router;
