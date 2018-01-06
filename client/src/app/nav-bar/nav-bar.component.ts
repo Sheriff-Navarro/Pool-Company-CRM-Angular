@@ -29,14 +29,10 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {
     this.AuthService.checklogin()
     .then((userFromApi) => {
-        this.UsersService.getUser()
-        .subscribe(userFromApi => {
       this.currentUser =  userFromApi  })
-    })
     .catch(() => {
       this.loadingNavError = 'Something went wrong loading the Nav-Bar';
     });
-
   }
 
   logMeOutPls() {
