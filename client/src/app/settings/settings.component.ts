@@ -39,9 +39,8 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
     this.AuthService.checklogin()
       .then((userFromApi) => {
-          this.UsersService.getUser()
-          .subscribe(userFromApi => {
-        this.currentUser =  userFromApi  })
+        console.log("USER FROM API ", userFromApi);
+        this.currentUser =  userFromApi
       })
       .catch(() => {
           this.router.navigate(['/app/login']);

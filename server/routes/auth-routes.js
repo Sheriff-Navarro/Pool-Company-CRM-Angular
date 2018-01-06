@@ -112,7 +112,8 @@ router.post('/api/logout', (req, res, next) => {
 //--------------------------------------------------------Validate user is loged in route
 router.get('/api/checklogin', (req, res, next) => { // this function verifies if the user is authenticated or not.
   if (req.isAuthenticated()) { // passing the isAuthenticated function which will verify for us the user is authenticated.
-    res.status(200).json({ message: 'You are currently loged in!' });
+    // res.status(200).json({ message: 'You are currently loged in!' });
+res.status(200).json(req.user);
     return;
   }// Checking if loged in or not
 
