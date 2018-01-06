@@ -17,8 +17,6 @@ router.put('/api/user/edit', (req, res) => {
     //   res.status(400).json({ message: 'Specified id is not valid' });
     //   return;
     // }
-
-
     const update = {
       // avatarUrl : req.body.avatarUrl,
       firstName : req.body.firstName,

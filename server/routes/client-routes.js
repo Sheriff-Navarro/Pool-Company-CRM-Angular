@@ -19,7 +19,7 @@ const router = express.Router();
 //     // });
 //   }
 // });
-
+//-------------------------------------------------------- get client route
 router.get('/api/get-clients', (req, res, next)=>{
   if (req.isAuthenticated()) {
     Client.find(
@@ -36,6 +36,37 @@ router.get('/api/get-clients', (req, res, next)=>{
       res.status(403).json({message: "You gotta log in first."});
     }
   });
+
+  //-------------------------------------------------------- get clientpage route for client
+  router.get('/api/client/:id', (req, res, next)=>{
+    console.log('function started');
+    const clientId = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(clientId)) {
+      res.status(400)
+      .json({ message: 'Specified id is not valid' });
+      return;
+    }
+
+    console.log('user id valid');
+
+     if (req.isAuthenticated()) {
+       console.log('is Authenticated');
+
+       Client.findById(clientId, function (err, foundClient) {
+         console.log(foundClient);
+         if (err){
+           console.log('error found');
+           res.json(err);
+           return;
+         }
+         console.log(foundClient);
+         res.status(200).json(foundClient);
+        });
+      }
+      else
+        res.status(403).json({message: "You gotta log in first."});
+    });
 
   router.post('/api/new-client', (req, res, next) => {
     const clientFirstName = req.body.clientFirstName;
@@ -88,7 +119,6 @@ router.get('/api/get-clients', (req, res, next)=>{
     const clientId = req.params.id
     var theUser = req.user
 
-
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
       res.status(400)
       .json({ message: 'Specified id is not valid' });
@@ -100,7 +130,6 @@ router.get('/api/get-clients', (req, res, next)=>{
 
       theUser.userClients.forEach((userClient, index) => {
         console.log('ClientId', clientId);
-
         console.log('User client is', userClient);
         console.log('removing from userClients array started for ', userClient);
 
