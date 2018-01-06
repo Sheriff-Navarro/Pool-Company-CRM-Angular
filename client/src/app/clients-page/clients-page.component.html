@@ -28,13 +28,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let client of clientArray">
-          <th>{{ client.clientFirstName }}</th>
-          <th>{{ client.clientLastName }}</th>
-          <th>{{ client.clientStreet1 }}<br>
+          <th class="col-md-2">{{ client.clientFirstName }}</th>
+          <th class="col-md-2">{{ client.clientLastName }}</th>
+          <th class="col-md-2">{{ client.clientStreet1 }}<br>
             <!-- {{ client.clientStreet2 }}<br> -->
             {{ client.clientCity }}, {{ client.clientProvince }} {{ client.clientZip }}</th>
-            <th>{{ client.clientPrimaryPhone }}</th>
-            <th>{{ client.clientUsername }}</th>
+            <th class="col-md-2">{{ client.clientPrimaryPhone }}</th>
+            <th class="col-md-2">{{ client.clientUsername }}</th>
           </tr>
         </tbody>
         </table>

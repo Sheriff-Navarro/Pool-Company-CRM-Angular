@@ -1,7 +1,7 @@
-/* tbody {
+tbody {
   height: 400px;
   overflow-y:auto;
-  position: absolute;
+  /* position: absolute; */
 }
 
 table {
@@ -9,9 +9,4 @@ table {
 }
 
 tbody th {
-  padding-right: 100px;
-} */
-
-/* thead th {
-  padding-right: 90px;
-} */
+}
