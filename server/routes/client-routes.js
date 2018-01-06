@@ -37,76 +37,100 @@ router.get('/api/get-clients', (req, res, next)=>{
     }
   });
 
-router.post('/api/new-client', (req, res, next) => {
-  const clientFirstName = req.body.clientFirstName;
-  const clientOwner = req.user.id;
-  const clientLastName = req.body.clientLastName;
-  // const clientCompanyName = req.body.clientCompanyName;
-  const clientUsername = req.body.clientUsername;
-  const clientPrimaryPhone = req.body.clientPrimaryPhone;
-  const clientStreet1 = req.body.clientStreet1;
-  const clientStreet2 = req.body.clientStreet2;
-  const clientCity = req.body.clientCity;
-  const clientProvince = req.body.clientProvince;
-  const clientZip = req.body.clientZip;
+  router.post('/api/new-client', (req, res, next) => {
+    const clientFirstName = req.body.clientFirstName;
+    const clientOwner = req.user.id;
+    const clientLastName = req.body.clientLastName;
+    // const clientCompanyName = req.body.clientCompanyName;
+    const clientUsername = req.body.clientUsername;
+    const clientPrimaryPhone = req.body.clientPrimaryPhone;
+    const clientStreet1 = req.body.clientStreet1;
+    const clientStreet2 = req.body.clientStreet2;
+    const clientCity = req.body.clientCity;
+    const clientProvince = req.body.clientProvince;
+    const clientZip = req.body.clientZip;
 
-  if (req.isAuthenticated()) {
-    const theUser = req.user;
+    if (req.isAuthenticated()) {
+      const theUser = req.user;
 
-    const theClient = new Client({
-      clientFirstName: clientFirstName,
-      clientOwner : clientOwner,
-      clientLastName: clientLastName,
-      clientPrimaryPhone: clientPrimaryPhone,
-      clientUsername: clientUsername,
-      // clientCompanyName: clientCompanyName,
-      clientStreet1: clientStreet1,
-      clientStreet2: clientStreet2,
-      clientCity: clientCity,
-      clientProvince: clientProvince,
-      clientZip: clientZip,
-    });
+      const theClient = new Client({
+        clientFirstName: clientFirstName,
+        clientOwner : clientOwner,
+        clientLastName: clientLastName,
+        clientPrimaryPhone: clientPrimaryPhone,
+        clientUsername: clientUsername,
+        // clientCompanyName: clientCompanyName,
+        clientStreet1: clientStreet1,
+        clientStreet2: clientStreet2,
+        clientCity: clientCity,
+        clientProvince: clientProvince,
+        clientZip: clientZip,
+      });
 
-    theClient.save(function(error) {
-      if (!error) {
-        theUser.userClients.push(theClient);
-        theUser.save();
+      theClient.save(function(error) {
+        if (!error) {
+          theUser.userClients.push(theClient);
+          theUser.save();
 
-        res.status(200).json({ message: 'Success! Client saved.' });
-        return;
+          res.status(200).json({ message: 'Success! Client saved.' });
+          return;
 
-      }
-      else if (error){
-        res.status(500).json({ message: 'Something went wrong. Nothing was saved.' });
-        return;
-      }
-    });
-  }
-});
+        }
+        else if (error){
+          res.status(500).json({ message: 'Something went wrong. Nothing was saved.' });
+          return;
+        }
+      });
+    }
+  });
 
-router.delete('/api/client/:id', (req, res) => {
-  const clientId = req.params.id
+  router.delete('/api/client/:id', (req, res) => {
+    const clientId = req.params.id
+    var theUser = req.user
 
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-   res.status(400)
+
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      res.status(400)
       .json({ message: 'Specified id is not valid' });
-   return;
- }
+      return;
+    }
 
-  if (req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
+      console.log('auth');
 
-    Client.findByIdAndRemove(clientId, (err) => {
-      if (err) {
-        res.json({message: 'Something went wrong. Please Try again.'});
-        return;
-      }
+      theUser.userClients.forEach((userClient, index) => {
+        console.log('ClientId', clientId);
 
-      res.json({message: 'Client Deleted!'});
-    });
-  }
-  else // otherwise res serve 403 (forbidden)
-  res.status(403).json({ message: 'You can\'t do that. Please log in first.' });
-});
+        console.log('User client is', userClient);
+        console.log('removing from userClients array started for ', userClient);
+
+        if (userClient == clientId){
+          theUser.userClients.splice(index, 1);
+          console.log('removed from user');
+
+          theUser.save((err)=>{
+            console.log('database saved changes');
+
+            if(err){
+              res.json(err);
+              return;
+            }
+          });
+        }
+      });
+
+      Client.findByIdAndRemove(clientId, (err) => {
+        if (err) {
+          res.json({message: 'Something went wrong. Please Try again.'});
+          return;
+        }
+
+        res.json({message: 'Client Deleted!'});
+      });
+    }
+    else // otherwise res serve 403 (forbidden)
+    res.status(403).json({ message: 'You can\'t do that. Please log in first.' });
+  });
 
 
-module.exports = router;
+  module.exports = router;

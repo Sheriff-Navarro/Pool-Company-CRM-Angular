@@ -9,7 +9,6 @@ import {ClientsService} from '../services/clients.service';
   styleUrls: ['./clients-page.component.css']
 })
 export class ClientsPageComponent implements OnInit {
-  isLoggedOut: boolean = false;
   clientArray: any[] = [];
   clientListError: string;
 
@@ -22,7 +21,7 @@ export class ClientsPageComponent implements OnInit {
   ngOnInit() {
     this.AuthService.checklogin()
           .catch((err) => {
-          this.isLoggedOut = true;
+          this.router.navigate(['/app/login']);
       });
 
       this.ClientsService.getClients()

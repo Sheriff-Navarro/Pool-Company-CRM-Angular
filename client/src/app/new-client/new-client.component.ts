@@ -11,7 +11,6 @@ import {ClientsService} from '../services/clients.service';
 })
 
 export class NewClientComponent implements OnInit {
-  isLoggedOut: boolean = false;
   errorMessage: string;
 
   FormData = {
@@ -42,7 +41,7 @@ export class NewClientComponent implements OnInit {
       // })
       // Even if you don't do anything on error, catch to avoid a console error.
       .catch((err) => {
-          this.isLoggedOut = true;
+      this.router.navigate(['/app/login']);
       });
   }
 
