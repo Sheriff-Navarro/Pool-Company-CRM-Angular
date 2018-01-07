@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
 ) { }
 
   ngOnInit() {
-
     this.AuthService.checklogin()
       .catch(() => {
           this.router.navigate(['/app/login']);
