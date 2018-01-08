@@ -3,7 +3,67 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
-      <h1>{{ client.clientFirstName }} {{ client.clientLasttName }}</h1>
+      <h1 class="page-header"><span style="margin-right: 10px;" class="glyphicon glyphicon-user"></span>{{ client.clientFirstName }} {{ client.clientLastName }}
+        <small style="display: inline-block; float: right;" class="text-right"><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ client.clientStreet1 }} {{ client.clientStreet2 }} {{ client.clientCity }} {{ client.clientProvice }}">{{ client.clientStreet1 }}<span *ngIf="client.clientStreet2"> </span>{{ client.clientStreet2 }}<br>{{ client.clientCity }}<span *ngIf="client.clientProvince">, </span>{{ client.clientProvince }} {{ client.clientZip }}</a></small><span class="glyphicon glyphicon-map-marker" style="float: right; margin-right: 10px;"></span></h1>
+
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="app/client/details/{{client._id}}#">About</a></li>
+          <li role="presentation"><a href="app/client/details/{{client._id}}#">Activities</a></li>
+          <li role="presentation"><a href="app/client/details/{{client._id}}#">Pool Vitals</a></li>
+          <li role="presentation"><a href="app/client/details/{{client._id}}#">Products</a></li>
+          <li role="presentation"><a href="app/client/details/{{client._id}}#">Invoices</a></li>
+          <li role="presentation"><a href="app/client/details/{{client._id}}#">Payments</a></li>
+        </ul>
+
+        <div class="tab-info-div">
+          <table class="table">
+            <thead>
+              <tr>User info</tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="text-muted">First Name:</th>
+                <th>{{ client.clientFirstName }}</th>
+                <th class="text-muted">Last Name:</th>
+                <th>{{ client.clientLastName }}</th>
+              </tr>
+              <!-- <tr>
+              <th class="text-muted">Password:</th>
+              <th>●●●●●●●●<a href="#" style="float: right;">Change</a></th>
+            </tr> -->
+
+            <tr>
+              <!-- <th class="text-muted">Company Name:</th>
+              <th>{{ client.clientCompanyName }}</th> -->
+              <th class="text-muted">Phone:</th>
+              <th>{{ client.primaryPhone }}</th>
+              <th class="text-muted">Email:</th>
+              <th>{{ client.clientUsername }}</th>
+            </tr>
+
+            <thead>
+              <tr>Client's Pool Address</tr>
+            </thead>
+            <tr>
+              <th class="text-muted">Street:</th>
+              <th>{{ client.clientStreet1 }}
+              {{ client.clientStreet2 }}</th>
+              <th class="text-muted">City:</th>
+              <th>{{ client.clientCity }}</th>
+            </tr>
+
+            <tr>
+              <th class="text-muted">Provice:</th>
+              <th>{{ client.clientProvince }}</th>
+              <th class="text-muted">Zip:</th>
+              <th>{{ client.clientZip }}</th>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+
     </div>
   </div>
 </div>
