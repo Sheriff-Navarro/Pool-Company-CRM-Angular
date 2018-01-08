@@ -23,7 +23,6 @@ export class AllClientsPageComponent implements OnInit {
           .catch((err) => {
           this.router.navigate(['/app/login']);
       });
-
       this.ClientsService.getClients()
         .subscribe(
           (clientList) => {
@@ -36,7 +35,6 @@ export class AllClientsPageComponent implements OnInit {
 
   toDelClient(id) {
     var clientToDel = this.clientArray;
-
     this.ClientsService.delClient(id)
     .subscribe(data => {
       if(data.n == 1){
