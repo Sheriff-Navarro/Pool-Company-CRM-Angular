@@ -1,9 +1,9 @@
 .profilePic {
-  height: 250px;
-  max-width: 250px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-border-radius: 5px; /* 5px rounded corners */
-  margin-bottom: 25px;
+  /* max-height: 250px;
+  max-width: 250px; */
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  /* border-radius: 5px;
+  margin-bottom: 25px; */
 }
 
 #deleteButton {

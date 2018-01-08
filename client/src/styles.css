@@ -11,6 +11,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.page-header {
+  margin-top: 0px;
+}
+
 .card {
   transition: 0.3s;
   width: 100%;

@@ -1,9 +1,9 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-sm-4">
     <div class="card">
-      <img src="{{ currentUser.avatarUrl }}" alt="User profile photo" class="profilePic center-block img-rounded" style="">
+      <img src="{{ currentUser.avatarUrl }}" alt="User profile photo" class="profilePic center-block img-rounded img-responsive">
       <div class="text-center">
         <h3>{{ currentUser.firstName }} {{ currentUser.lastName }}</h3>
         <span style=" display: inline-block; vertical-align: top;">Owner</span><span *ngIf="currentUser.companyName"> at {{ currentUser.companyName }}</span>
@@ -25,15 +25,14 @@
   Phone:+1-234-5678 -->
 
 
-  <div class="col-md-8">
+  <div class="col-sm-8">
     <div class="card">
-      <div style="padding-bottom: 10px;">
-        <h1 style="display: inline;">About</h1>
+        <h1 class="page-header">Settings</h1>
+        <!-- <h3 style="display: inline;">About</h3> -->
         <a style="float: right;" class="btn btn-default" href="/app/post-signup" role="button">Edit</a>
-      </div>
       <table class="table">
         <thead>
-          <tr>Contact info</tr>
+          <tr>User info</tr>
         </thead>
         <tbody>
           <tr>
@@ -57,7 +56,7 @@
           </tr> <br>
 
           <thead>
-            <tr>Address</tr>
+            <tr>Company Address</tr>
           </thead>
           <tr>
             <th class="text-muted">Street:</th>
