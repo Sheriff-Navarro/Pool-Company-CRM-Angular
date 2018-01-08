@@ -6,6 +6,22 @@
       <h1 class="page-header"><span style="margin-right: 10px;" class="glyphicon glyphicon-user"></span>{{ client.clientFirstName }} {{ client.clientLastName }}
         <small style="display: inline-block; float: right;" class="text-right"><a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ client.clientStreet1 }} {{ client.clientStreet2 }} {{ client.clientCity }} {{ client.clientProvice }}">{{ client.clientStreet1 }}<span *ngIf="client.clientStreet2"> </span>{{ client.clientStreet2 }}<br>{{ client.clientCity }}<span *ngIf="client.clientProvince">, </span>{{ client.clientProvince }} {{ client.clientZip }}</a></small><span class="glyphicon glyphicon-map-marker" style="float: right; margin-right: 10px;"></span></h1>
 
+<div class="dropdown" style="float: right;">
+  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    More
+    <span class="caret"></span>
+  </button>
+  <ul style="position: absolute; left: -90px;"class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="app/client/details/{{client._id}}#">New Pool Service</a></li>
+    <li><a href="app/client/details/{{client._id}}#">New Product</a></li>
+    <li><a href="app/client/details/{{client._id}}#">Log Pool Vital</a></li>
+    <li><a href="app/client/details/{{client._id}}#">Log Note</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="app/client/details/{{client._id}}#">New Invoice</a></li>
+    <li><a href="app/client/details/{{client._id}}#">New Payment</a></li>
+  </ul>
+</div>
+
         <ul class="nav nav-tabs">
           <li role="presentation" class="active"><a href="app/client/details/{{client._id}}#">About</a></li>
           <li role="presentation"><a href="app/client/details/{{client._id}}#">Activities</a></li>
