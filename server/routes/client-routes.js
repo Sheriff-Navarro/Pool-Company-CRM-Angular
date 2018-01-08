@@ -4,23 +4,8 @@ const User = require('../models/user-model');
 const Client = require('../models/client-model');
 const router = express.Router();
 
-// router.get('/api/get-clients', (req, res, next) => {
-//   if (req.isAuthenticated()) {
-//     const theUserId = req.user.id;
-//     clients.find({clientOwner: theUserId }).
-//     // sort({ "clientLastName": 1 })
-//     res.status(200).json({clients});
-//
-//     // populate('clientOwner').
-//     // exec(function (err, clientlist) {
-//     //   if (err) return handleError(err);
-//     //   res.status(200).json({clientlist});
-//     //   return;
-//     // });
-//   }
-// });
-//-------------------------------------------------------- get client route
-router.get('/api/get-clients', (req, res, next)=>{
+//--------------------------------------------------------
+router.get('/api/all-clients', (req, res, next)=>{
   if (req.isAuthenticated()) {
     Client.find(
       {clientOwner: req.user._id},
@@ -37,7 +22,7 @@ router.get('/api/get-clients', (req, res, next)=>{
     }
   });
 
-  //-------------------------------------------------------- get clientpage route for client
+  //--------------------------------------------------------
   router.get('/api/client/:id', (req, res, next)=>{
     console.log('function started');
     const clientId = req.params.id;
@@ -68,6 +53,7 @@ router.get('/api/get-clients', (req, res, next)=>{
         res.status(403).json({message: "You gotta log in first."});
     });
 
+    //--------------------------------------------------------
   router.post('/api/new-client', (req, res, next) => {
     const clientFirstName = req.body.clientFirstName;
     const clientOwner = req.user.id;
@@ -115,6 +101,7 @@ router.get('/api/get-clients', (req, res, next)=>{
     }
   });
 
+  //--------------------------------------------------------
   router.delete('/api/client/:id', (req, res) => {
     const clientId = req.params.id
     var theUser = req.user
@@ -160,6 +147,7 @@ router.get('/api/get-clients', (req, res, next)=>{
     else // otherwise res serve 403 (forbidden)
     res.status(403).json({ message: 'You can\'t do that. Please log in first.' });
   });
+  //--------------------------------------------------------
 
 
   module.exports = router;

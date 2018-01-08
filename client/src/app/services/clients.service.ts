@@ -40,7 +40,7 @@ export class ClientsService {
 getClients() {
   return this.http
   .get(
-    `${environment.apiBase}/api/get-clients`,
+    `${environment.apiBase}/api/all-clients`,
     { withCredentials: true })
     .map( res => res.json())
     // .toPromise()
@@ -55,7 +55,14 @@ getClients() {
       `${environment.apiBase}/api/client/`+id,
       { withCredentials: true })
       .map( res => res.json())
-
   }
 
+
+  getThisClient(id){
+    return this.http
+    .get(
+      `${environment.apiBase}/api/client/`+id,
+      { withCredentials: true })
+      .map( res => res.json())
+  }
 }
