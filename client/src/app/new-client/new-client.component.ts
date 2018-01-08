@@ -47,7 +47,7 @@ export class NewClientComponent implements OnInit {
 
   doCreateClient() {
     this.ClientsService.createClient(this.FormData)
-      .then((resultFromApi) => {
+      .then((createdClientId: string) => {
           this.FormData = {
           clientFirstName: '',
           clientLastName: '',
@@ -60,11 +60,7 @@ export class NewClientComponent implements OnInit {
           clientProvince: '',
           clientZip: '',
           };
-
-          // clear error message
-          this.errorMessage = "";
-
-          // redirect to /camels
+          // this.router.navigate(['/app/client/details/'+createdClientId]);
           this.router.navigate(['/app/client']);
       })
       .catch((err) => {

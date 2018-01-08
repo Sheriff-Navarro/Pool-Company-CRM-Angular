@@ -41,6 +41,9 @@ export class ClientComponent implements OnInit {
     });
     this.ClientsService.getThisClient(this.CurrentClientId)
       .subscribe((clientFromApi) => {
+        if (!clientFromApi){
+          this.router.navigate(['/app/dashboard']);
+        }
         console.log(clientFromApi)
         this.client = clientFromApi;
       })

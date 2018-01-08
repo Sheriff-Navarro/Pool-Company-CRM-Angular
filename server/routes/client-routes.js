@@ -89,7 +89,9 @@ router.get('/api/all-clients', (req, res, next)=>{
           theUser.userClients.push(theClient);
           theUser.save();
 
-          res.status(200).json({ message: 'Success! Client saved.' });
+          const theClientId = theClient._id;
+          console.log(theClientId);
+          res.status(200).json({ theClientId });
           return;
 
         }
