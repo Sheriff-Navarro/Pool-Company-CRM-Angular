@@ -39,13 +39,12 @@ router.get('/api/all-clients', (req, res, next)=>{
        console.log('is Authenticated');
 
        Client.findById(clientId, function (err, foundClient) {
-         console.log(foundClient);
          if (err){
            console.log('error found');
            res.json(err);
            return;
          }
-         console.log(foundClient);
+         console.log("Client found in database: ", foundClient);
          res.status(200).json(foundClient);
         });
       }
