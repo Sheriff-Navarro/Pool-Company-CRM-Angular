@@ -65,7 +65,7 @@ export class NewClientComponent implements OnInit {
           this.errorMessage = "";
 
           // redirect to /camels
-          this.router.navigate(['/app/clients']);
+          this.router.navigate(['/app/client']);
       })
       .catch((err) => {
           const parsedError = err.json();

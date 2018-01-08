@@ -35,7 +35,7 @@
             <span *ngIf="client.clientCity">{{ client.clientCity }}</span><span *ngIf="client.clientCity && client.clientZip">, </span> <span *ngIf="client.clientProvince">{{ client.clientProvince }}</span><span *ngIf="client.clientZip"> {{ client.clientZip }}</span></th>
             <th class="col-md-2">{{ client.clientPrimaryPhone }}</th>
             <th class="col-md-2">{{ client.clientUsername }}</th>
-            <th class="col-md-2"><a href="app/clients" class="btn btn-danger btn-xs" (click)="toDelClient(client._id)">DELETE</a></th>
+            <th class="col-md-2"><a href="app/client" class="btn btn-danger btn-xs" (click)="toDelClient(client._id)">DELETE</a></th>
 
           </tr>
         </tbody>
