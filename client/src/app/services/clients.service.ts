@@ -10,16 +10,16 @@ export class ClientsService {
     private http: Http
   ) { }
 
-//GET ALL CLIENTS---------------------------------------------------------
-getClients() {
+  //GET ALL-----------------------------------------------------------------
+  getClients() {
   return this.http
   .get(
     `${environment.apiBase}/api/client/all`,
     { withCredentials: true })
     .map( res => res.json())
-}
+  }
 
-  //GET ONE CLIENT----------------------------------------------------------
+  //GET ONE-----------------------------------------------------------------
   getThisClient(id){
   return this.http
   .get(

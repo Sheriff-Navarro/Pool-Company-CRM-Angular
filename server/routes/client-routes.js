@@ -4,7 +4,7 @@ const User = require('../models/user-model');
 const Client = require('../models/client-model');
 const router = express.Router();
 
-  //GET ALL CLIENTS---------------------------------------------------------
+//GET ALL-----------------------------------------------------------------
   router.get('/api/client/all', (req, res, next)=>{
     if (req.isAuthenticated()) {
       Client.find(
@@ -23,7 +23,7 @@ const router = express.Router();
       }
     });
 
-  //GET ONE CLIENT----------------------------------------------------------
+    //GET ONE-----------------------------------------------------------------
   router.get('/api/client/:id', (req, res, next)=>{
     console.log('function started');
     const clientId = req.params.id;
