@@ -15,6 +15,7 @@ router.get('/api/all-clients', (req, res, next)=>{
           return;
         }
         res.status(200).json(clientList);
+        console.log(clientList);
       });
     }
     else {

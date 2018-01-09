@@ -34,6 +34,7 @@ export class AllClientsPageComponent implements OnInit {
   }
 
   toDelClient(id) {
+    console.log(this.clientArray)
     var clientToDel = this.clientArray;
     this.ClientsService.delClient(id)
     .subscribe(data => {
@@ -45,6 +46,8 @@ export class AllClientsPageComponent implements OnInit {
         }
       }
     });
+
+    // this.clientArray.pull();
   }
 
 }
