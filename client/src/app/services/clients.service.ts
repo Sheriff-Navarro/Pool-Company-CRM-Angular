@@ -65,4 +65,24 @@ getClients() {
       { withCredentials: true })
       .map( res => res.json())
   }
+
+  editClient(id, componentInfo){
+    return this.http
+    .put(
+      `${environment.apiBase}/api/client/edit/`+id,
+      {
+        clientFirstName: componentInfo.clientFirstName,
+        clientLastName: componentInfo.clientLastName,
+        clientUsername: componentInfo.clientUsername,
+        clientPrimaryPhone: componentInfo.clientPrimaryPhone,
+        clientStreet1: componentInfo.clientStreet1,
+        clientStreet2: componentInfo.clientStreet2,
+        clientCity: componentInfo.clientCity,
+        clientProvince: componentInfo.clientProvince,
+        clientZip: componentInfo.clientZip
+      },
+      // Send the cookies across domains
+      { withCredentials: true })
+      .map( res => res.json())
+  }
 }

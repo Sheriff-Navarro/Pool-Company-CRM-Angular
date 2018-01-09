@@ -17,15 +17,15 @@ export class PostSignupComponent implements OnInit {
     // username: '',
     // password: '',
     // avatarUrl: '',
-    firstName: '',
-    lastName: '',
-    companyName: '',
-    primaryPhone: '',
-    street1: '',
-    street2: '',
-    city: '',
-    province: '',
-    zip: '',
+    // firstName: '',
+    // lastName: '',
+    // companyName: '',
+    // primaryPhone: '',
+    // street1: '',
+    // street2: '',
+    // city: '',
+    // province: '',
+    // zip: '',
   };
 
   constructor(
@@ -49,7 +49,6 @@ export class PostSignupComponent implements OnInit {
   updateUserAccount() {
     this.UsersService.updateUser(this.FormData)
       .then((resultFromApi) => {
-          // clear form
           this.FormData = {
             // username: '',
             // password: '',
@@ -75,6 +74,6 @@ export class PostSignupComponent implements OnInit {
           const parsedError = err.json();
           this.errorMessage = parsedError.message + ' ';
       });
-  } // close doSignUp()
+  }
 
 }

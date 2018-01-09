@@ -13,17 +13,12 @@ export class ClientComponent implements OnInit {
 
   CurrentClientId: string;
 
+  errorMessage: string;
+
   client = {
-    clientFirstName: '',
-    clientLastName: '',
-    clientUsername: '',
-    clientPrimaryPhone: '',
-    clientStreet1: '',
-    clientStreet2: '',
-    clientCity: '',
-    clientProvince: '',
-    clientZip: ''
   };
+
+  newData = {}
 
   constructor(
     private router: Router,
@@ -40,13 +35,39 @@ export class ClientComponent implements OnInit {
       this.router.navigate(['/app/login']);
     });
     this.ClientsService.getThisClient(this.CurrentClientId)
-      .subscribe((clientFromApi) => {
-        if (!clientFromApi){
-          this.router.navigate(['/app/dashboard']);
-        }
-        console.log(clientFromApi)
-        this.client = clientFromApi;
-      })
+    .subscribe((clientFromApi) => {
+      if (!clientFromApi){
+        this.router.navigate(['/app/dashboard']);
+      }
+      console.log(clientFromApi)
+      this.client = clientFromApi;
+    })
   }
 
+
+  doEditClient() {
+    this.ClientsService.editClient(this.CurrentClientId, this.newData).toPromise()
+    .then((resultFromApi) => {
+      this.client = {
+        clientFirstName: '',
+        clientLastName: '',
+        clientUsername: '',
+        clientPrimaryPhone: '',
+        clientStreet1: '',
+        clientStreet2: '',
+        clientCity: '',
+        clientProvince: '',
+        clientZip: ''
+      };
+      this.client = this.newData;
+      // clear error message
+      this.errorMessage = "";
+
+      // this.router.navigate(['/app/client/edit']);
+    })
+    .catch((err) => {
+      const parsedError = err.json();
+      this.errorMessage = parsedError.message + '';
+    });
+  }
 }
