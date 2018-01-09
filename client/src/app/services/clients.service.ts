@@ -10,16 +10,32 @@ export class ClientsService {
     private http: Http
   ) { }
 
+//GET ALL CLIENTS---------------------------------------------------------
+getClients() {
+  return this.http
+  .get(
+    `${environment.apiBase}/api/client/all`,
+    { withCredentials: true })
+    .map( res => res.json())
+}
+
+  //GET ONE CLIENT----------------------------------------------------------
+  getThisClient(id){
+  return this.http
+  .get(
+    `${environment.apiBase}/api/client/`+id,
+    { withCredentials: true })
+    .map( res => res.json())
+  }
+
+  //CREATE------------------------------------------------------------------
   createClient(componentInfo) {
-    return this.http
-    .post(
-      `${environment.apiBase}/api/new-client`,
-      // Form body information to send to the back end (req.body)
-      {
+  return this.http
+  .post(
+    `${environment.apiBase}/api/client/new`,
+    {
       clientFirstName: componentInfo.clientFirstName,
-      // clientOwner : componentInfo.clientOwner,
       clientLastName: componentInfo.clientLastName,
-      // clientCompanyName: componentInfo.clientCompanyName,
       clientPrimaryPhone: componentInfo.clientPrimaryPhone,
       clientUsername: componentInfo.clientUsername,
       clientStreet1: componentInfo.clientStreet1,
@@ -37,52 +53,34 @@ export class ClientsService {
   .then(res => res.json());
 }
 
-getClients() {
-  return this.http
-  .get(
-    `${environment.apiBase}/api/all-clients`,
-    { withCredentials: true })
-    .map( res => res.json())
-    // .toPromise()
-    //
-    // // Parse the JSON
-    // .then(res => res.json()); // close signup()
-  }
+//EDIT--------------------------------------------------------------------
+editClient(id, componentInfo){
+return this.http
+.put(
+  `${environment.apiBase}/api/client/`+id,
+  {
+    clientFirstName: componentInfo.clientFirstName,
+    clientLastName: componentInfo.clientLastName,
+    clientUsername: componentInfo.clientUsername,
+    clientPrimaryPhone: componentInfo.clientPrimaryPhone,
+    clientStreet1: componentInfo.clientStreet1,
+    clientStreet2: componentInfo.clientStreet2,
+    clientCity: componentInfo.clientCity,
+    clientProvince: componentInfo.clientProvince,
+    clientZip: componentInfo.clientZip
+  },
+  // Send the cookies across domains
+  { withCredentials: true })
+  .map( res => res.json())
+}
 
-  delClient(id){
-    return this.http
-    .delete(
-      `${environment.apiBase}/api/client/`+id,
-      { withCredentials: true })
-      .map( res => res.json())
-  }
+//DELETE------------------------------------------------------------------
+delClient(id){
+return this.http
+.delete(
+  `${environment.apiBase}/api/client/`+id,
+  { withCredentials: true })
+  .map( res => res.json())
+}
 
-
-  getThisClient(id){
-    return this.http
-    .get(
-      `${environment.apiBase}/api/client/`+id,
-      { withCredentials: true })
-      .map( res => res.json())
-  }
-
-  editClient(id, componentInfo){
-    return this.http
-    .put(
-      `${environment.apiBase}/api/client/edit/`+id,
-      {
-        clientFirstName: componentInfo.clientFirstName,
-        clientLastName: componentInfo.clientLastName,
-        clientUsername: componentInfo.clientUsername,
-        clientPrimaryPhone: componentInfo.clientPrimaryPhone,
-        clientStreet1: componentInfo.clientStreet1,
-        clientStreet2: componentInfo.clientStreet2,
-        clientCity: componentInfo.clientCity,
-        clientProvince: componentInfo.clientProvince,
-        clientZip: componentInfo.clientZip
-      },
-      // Send the cookies across domains
-      { withCredentials: true })
-      .map( res => res.json())
-  }
 }

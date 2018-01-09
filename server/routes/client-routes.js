@@ -4,26 +4,26 @@ const User = require('../models/user-model');
 const Client = require('../models/client-model');
 const router = express.Router();
 
-//--------------------------------------------------------
-router.get('/api/all-clients', (req, res, next)=>{
-  if (req.isAuthenticated()) {
-    Client.find(
-      {clientOwner: req.user._id},
-      (err, clientList) => {
-        if(err){
-          res.status(500).json(err);
-          return;
-        }
-        res.status(200).json(clientList);
-        console.log(clientList);
-      });
-    }
-    else {
-      res.status(403).json({message: "You gotta log in first."});
-    }
-  });
+  //GET ALL CLIENTS---------------------------------------------------------
+  router.get('/api/client/all', (req, res, next)=>{
+    if (req.isAuthenticated()) {
+      Client.find(
+        {clientOwner: req.user._id},
+        (err, clientList) => {
+          if(err){
+            res.status(500).json(err);
+            return;
+          }
+          res.status(200).json(clientList);
+          console.log(clientList);
+        });
+      }
+      else {
+        res.status(403).json({message: "You gotta log in first."});
+      }
+    });
 
-  //--------------------------------------------------------
+  //GET ONE CLIENT----------------------------------------------------------
   router.get('/api/client/:id', (req, res, next)=>{
     console.log('function started');
     const clientId = req.params.id;
@@ -36,25 +36,25 @@ router.get('/api/all-clients', (req, res, next)=>{
 
     console.log('user id valid');
 
-     if (req.isAuthenticated()) {
-       console.log('is Authenticated');
+    if (req.isAuthenticated()) {
+      console.log('is Authenticated');
 
-       Client.findById(clientId, function (err, foundClient) {
-         if (err){
-           console.log('error found');
-           res.json(err);
-           return;
-         }
-         console.log("Client found in database: ", foundClient);
-         res.status(200).json(foundClient);
-        });
-      }
-      else
-        res.status(403).json({message: "You gotta log in first."});
-    });
+      Client.findById(clientId, function (err, foundClient) {
+        if (err){
+          console.log('error found');
+          res.json(err);
+          return;
+        }
+        console.log("Client found in database: ", foundClient);
+        res.status(200).json(foundClient);
+      });
+    }
+    else
+    res.status(403).json({message: "You gotta log in first."});
+  });
 
-    //--------------------------------------------------------
-  router.post('/api/new-client', (req, res, next) => {
+  //CREATE------------------------------------------------------------------
+  router.post('/api/client/new', (req, res, next) => {
     const clientFirstName = req.body.clientFirstName;
     const clientOwner = req.user.id;
     const clientLastName = req.body.clientLastName;
@@ -101,7 +101,41 @@ router.get('/api/all-clients', (req, res, next)=>{
     }
   });
 
-  //--------------------------------------------------------
+  //EDIT--------------------------------------------------------------------
+  router.put('/api/client/:id', (req, res) => {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      res.status(400).json({ message: 'Specified id is not valid' });
+      return;
+    }
+
+    if (req.isAuthenticated()) {
+      const clientId = req.params.id;
+      const clientToUpdate = {
+        clientUsername : req.body.clientUsername,
+        clientFirstName : req.body.clientFirstName,
+        clientLastName : req.body.clientLastName,
+        clientPrimaryPhone : req.body.clientPrimaryPhone,
+        clientStreet1 : req.body.clientStreet1,
+        clientStreet2 : req.body.clientStreet2,
+        clientCity : req.body.clientCity,
+        clientProvince : req.body.clientProvince,
+        clientZip: req.body.clientZip
+      };
+
+      Client.findByIdAndUpdate(clientId, clientToUpdate, (err) => {
+        if (err) {
+          res.json({message: 'Please fill out all fields before saving.'});
+          return;
+        }
+
+        res.json({message: 'Client updated successfully'});
+      });
+    }
+    else // otherwise res serve 403 (forbidden)
+    res.status(403).json({ message: 'Unauthorized. Please login.' });
+  });
+
+  //DELETE------------------------------------------------------------------
   router.delete('/api/client/:id', (req, res) => {
     const clientId = req.params.id
     var theUser = req.user
@@ -146,40 +180,6 @@ router.get('/api/all-clients', (req, res, next)=>{
     }
     else
     res.status(403).json({ message: 'You can\'t do that. Please log in first.' });
-  });
-
-  //--------------------------------------------------------
-  router.put('/api/client/edit/:id', (req, res) => {
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      res.status(400).json({ message: 'Specified id is not valid' });
-      return;
-    }
-
-    if (req.isAuthenticated()) {
-      const clientId = req.params.id;
-      const clientToUpdate = {
-        clientUsername : req.body.clientUsername,
-        clientFirstName : req.body.clientFirstName,
-        clientLastName : req.body.clientLastName,
-        clientPrimaryPhone : req.body.clientPrimaryPhone,
-        clientStreet1 : req.body.clientStreet1,
-        clientStreet2 : req.body.clientStreet2,
-        clientCity : req.body.clientCity,
-        clientProvince : req.body.clientProvince,
-        clientZip: req.body.clientZip
-      };
-
-      Client.findByIdAndUpdate(clientId, clientToUpdate, (err) => {
-        if (err) {
-          res.json({message: 'Please fill out all fields before saving.'});
-          return;
-        }
-
-        res.json({message: 'Client updated successfully'});
-      });
-    }
-    else // otherwise res serve 403 (forbidden)
-    res.status(403).json({ message: 'Unauthorized. Please login.' });
   });
 
   module.exports = router;
