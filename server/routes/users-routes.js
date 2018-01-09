@@ -13,10 +13,6 @@ router.get('/api/user', (req, res, next) => {
 //-------------------------------------------------------- Edit admin route
 router.put('/api/user/edit', (req, res) => {
   if (req.isAuthenticated()) {
-    // if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    //   res.status(400).json({ message: 'Specified id is not valid' });
-    //   return;
-    // }
     const update = {
       // avatarUrl : req.body.avatarUrl,
       firstName : req.body.firstName,
@@ -39,10 +35,11 @@ router.put('/api/user/edit', (req, res) => {
       res.json({message: 'Admin updated successfully'});
     });
   }
-  else // otherwise res serve 403 (forbidden)
+  else
   res.status(403).json({ message: 'Unauthorized. Please login.' });
 });
 
+//--------------------------------------------------------
 router.delete('/api/user/delete', (req, res) => {
   if (req.isAuthenticated()) {
 
@@ -55,28 +52,8 @@ router.delete('/api/user/delete', (req, res) => {
       res.json({message: 'Account Deleted!'});
     });
   }
-  else // otherwise res serve 403 (forbidden)
+  else
   res.status(403).json({ message: 'You can\'t do that. Please log in first.' });
 });
-
-// //-------------------------------------------------------- Delete admin route
-// router.delete('/delete/:id', (req, res) => {
-//   // Checks if user ID is valid in the URL
-//   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
-//     res.status(400).json({ message: 'Specified id is not valid' });
-//     return;
-//   }
-//
-//   User.remove({ _id: req.params.id }, (err) => {
-//     if (err) {
-//       res.json(err);
-//       return;
-//     }
-//
-//     return res.json({
-//       message: 'User has been Deleted'
-//     });
-//   })
-// });
 
 module.exports = router;

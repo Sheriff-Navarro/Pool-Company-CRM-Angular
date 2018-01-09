@@ -57,7 +57,6 @@ router.get('/api/all-clients', (req, res, next)=>{
     const clientFirstName = req.body.clientFirstName;
     const clientOwner = req.user.id;
     const clientLastName = req.body.clientLastName;
-    // const clientCompanyName = req.body.clientCompanyName;
     const clientUsername = req.body.clientUsername;
     const clientPrimaryPhone = req.body.clientPrimaryPhone;
     const clientStreet1 = req.body.clientStreet1;
@@ -75,7 +74,6 @@ router.get('/api/all-clients', (req, res, next)=>{
         clientLastName: clientLastName,
         clientPrimaryPhone: clientPrimaryPhone,
         clientUsername: clientUsername,
-        // clientCompanyName: clientCompanyName,
         clientStreet1: clientStreet1,
         clientStreet2: clientStreet2,
         clientCity: clientCity,
@@ -145,10 +143,42 @@ router.get('/api/all-clients', (req, res, next)=>{
         res.json({message: 'Client Deleted!'});
       });
     }
-    else // otherwise res serve 403 (forbidden)
+    else
     res.status(403).json({ message: 'You can\'t do that. Please log in first.' });
   });
-  //--------------------------------------------------------
 
+  //--------------------------------------------------------
+  router.put('/api/client/edit/:id', (req, res) => {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      res.status(400).json({ message: 'Specified id is not valid' });
+      return;
+    }
+
+    if (req.isAuthenticated()) {
+      const clientId = req.params.id;
+      const clientToUpdate = {
+        clientUsername : req.body.clientUsername,
+        clientFirstName : req.body.clientFirstName,
+        clientLastName : req.body.clientLastName,
+        clientPrimaryPhone : req.body.clientPrimaryPhone,
+        clientStreet1 : req.body.clientStreet1,
+        clientStreet2 : req.body.clientStreet2,
+        clientCity : req.body.clientCity,
+        clientProvince : req.body.clientProvince,
+        clientZip: req.body.clientZip
+      };
+
+      Client.findByIdAndUpdate(clientId, clientToUpdate, (err) => {
+        if (err) {
+          res.json({message: 'Please fill out all fields before saving.'});
+          return;
+        }
+
+        res.json({message: 'Client updated successfully'});
+      });
+    }
+    else // otherwise res serve 403 (forbidden)
+    res.status(403).json({ message: 'Unauthorized. Please login.' });
+  });
 
   module.exports = router;
