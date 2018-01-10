@@ -56,10 +56,6 @@ router.get('/api/client/all', (req, res, next)=>{
   //CREATE------------------------------------------------------------------
   router.post('/api/client/new', (req, res, next) => {
     if (req.isAuthenticated()) {
-      //   if (err){
-      //     res.status(403).jason({message: 'not authenticated. Please login first.'})
-      //     return;
-      //   }
 
       const theUser = req.user;
 
@@ -85,14 +81,12 @@ router.get('/api/client/all', (req, res, next)=>{
           console.log(theClientId);
           res.status(200).json({ theClientId });
           return;
-
-        }
-        else {// otherwise res serve 403 (forbidden)
-          res.status(403).json({ message: 'Unauthorized. Please login.' });
-          return;
         }
       });
     }
+      else
+      res.status(403).json({ message: 'You can\'t do that. Please log in first.' });
+
   });
 
   //EDIT--------------------------------------------------------------------
