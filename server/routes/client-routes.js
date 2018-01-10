@@ -55,42 +55,44 @@ router.get('/api/client/all', (req, res, next)=>{
 
   //CREATE------------------------------------------------------------------
   router.post('/api/client/new', (req, res, next) => {
-    // if (req.isAuthenticated(), err) {
-    //   if (err){
-    //     res.status(403).jason({message: 'not authenticated. Please login first.'})
-    //     return;
-    //   }
+    if (req.isAuthenticated()) {
+      //   if (err){
+      //     res.status(403).jason({message: 'not authenticated. Please login first.'})
+      //     return;
+      //   }
 
-    const theUser = req.user;
+      const theUser = req.user;
 
-    const theClient = new Client({
-      clientOwner : req.user.id,
-      clientUsername: req.body.clientUsername,
-      clientFirstName: req.body.clientFirstName,
-      clientLastName: req.body.clientLastName,
-      clientPrimaryPhone: req.body.clientPrimaryPhone,
-      clientStreet1: req.body.clientStreet1,
-      clientStreet2: req.body.clientStreet2,
-      clientCity: req.body.clientCity,
-      clientProvince: req.body.clientProvince,
-      clientZip: req.body.clientZip,
-    });
+      const theClient = new Client({
+        clientOwner : req.user.id,
+        clientUsername: req.body.clientUsername,
+        clientFirstName: req.body.clientFirstName,
+        clientLastName: req.body.clientLastName,
+        clientPrimaryPhone: req.body.clientPrimaryPhone,
+        clientStreet1: req.body.clientStreet1,
+        clientStreet2: req.body.clientStreet2,
+        clientCity: req.body.clientCity,
+        clientProvince: req.body.clientProvince,
+        clientZip: req.body.clientZip,
+      });
 
-    theClient.save(function(err) {
-      if (!err) {
-        theUser.userClients.push(theClient);
-        theUser.save();
+      theClient.save(function(err) {
+        if (!err) {
+          theUser.userClients.push(theClient);
+          theUser.save();
 
-        const theClientId = theClient._id;
-        console.log(theClientId);
-        res.status(200).json({ theClientId });
-        return;
+          const theClientId = theClient._id;
+          console.log(theClientId);
+          res.status(200).json({ theClientId });
+          return;
 
-      }
-      else {
-        res.jason(err);
-      }
-    });
+        }
+        else {// otherwise res serve 403 (forbidden)
+          res.status(403).json({ message: 'Unauthorized. Please login.' });
+          return;
+        }
+      });
+    }
   });
 
   //EDIT--------------------------------------------------------------------
@@ -123,8 +125,10 @@ router.get('/api/client/all', (req, res, next)=>{
         res.json({message: 'Client updated successfully'});
       });
     }
-    else // otherwise res serve 403 (forbidden)
-    res.status(403).json({ message: 'Unauthorized. Please login.' });
+    else {// otherwise res serve 403 (forbidden)
+      res.status(403).json({ message: 'Unauthorized. Please login.' });
+      return;
+    }
   });
 
   //DELETE------------------------------------------------------------------
