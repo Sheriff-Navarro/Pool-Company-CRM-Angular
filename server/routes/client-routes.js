@@ -5,25 +5,25 @@ const Client = require('../models/client-model');
 const router = express.Router();
 
 //GET ALL-----------------------------------------------------------------
-  router.get('/api/client/all', (req, res, next)=>{
-    if (req.isAuthenticated()) {
-      Client.find(
-        {clientOwner: req.user._id},
-        (err, clientList) => {
-          if(err){
-            res.status(500).json(err);
-            return;
-          }
-          res.status(200).json(clientList);
-          console.log(clientList);
-        });
-      }
-      else {
-        res.status(403).json({message: "You gotta log in first."});
-      }
-    });
+router.get('/api/client/all', (req, res, next)=>{
+  if (req.isAuthenticated()) {
+    Client.find(
+      {clientOwner: req.user._id},
+      (err, clientList) => {
+        if(err){
+          res.status(500).json(err);
+          return;
+        }
+        res.status(200).json(clientList);
+        console.log(clientList);
+      });
+    }
+    else {
+      res.status(403).json({message: "You gotta log in first."});
+    }
+  });
 
-    //GET ONE-----------------------------------------------------------------
+  //GET ONE-----------------------------------------------------------------
   router.get('/api/client/:id', (req, res, next)=>{
     console.log('function started');
     const clientId = req.params.id;
@@ -55,50 +55,42 @@ const router = express.Router();
 
   //CREATE------------------------------------------------------------------
   router.post('/api/client/new', (req, res, next) => {
-    const clientFirstName = req.body.clientFirstName;
-    const clientOwner = req.user.id;
-    const clientLastName = req.body.clientLastName;
-    const clientUsername = req.body.clientUsername;
-    const clientPrimaryPhone = req.body.clientPrimaryPhone;
-    const clientStreet1 = req.body.clientStreet1;
-    const clientStreet2 = req.body.clientStreet2;
-    const clientCity = req.body.clientCity;
-    const clientProvince = req.body.clientProvince;
-    const clientZip = req.body.clientZip;
+    // if (req.isAuthenticated(), err) {
+    //   if (err){
+    //     res.status(403).jason({message: 'not authenticated. Please login first.'})
+    //     return;
+    //   }
 
-    if (req.isAuthenticated()) {
-      const theUser = req.user;
+    const theUser = req.user;
 
-      const theClient = new Client({
-        clientFirstName: clientFirstName,
-        clientOwner : clientOwner,
-        clientLastName: clientLastName,
-        clientPrimaryPhone: clientPrimaryPhone,
-        clientUsername: clientUsername,
-        clientStreet1: clientStreet1,
-        clientStreet2: clientStreet2,
-        clientCity: clientCity,
-        clientProvince: clientProvince,
-        clientZip: clientZip,
-      });
+    const theClient = new Client({
+      clientOwner : req.user.id,
+      clientUsername: req.body.clientUsername,
+      clientFirstName: req.body.clientFirstName,
+      clientLastName: req.body.clientLastName,
+      clientPrimaryPhone: req.body.clientPrimaryPhone,
+      clientStreet1: req.body.clientStreet1,
+      clientStreet2: req.body.clientStreet2,
+      clientCity: req.body.clientCity,
+      clientProvince: req.body.clientProvince,
+      clientZip: req.body.clientZip,
+    });
 
-      theClient.save(function(error) {
-        if (!error) {
-          theUser.userClients.push(theClient);
-          theUser.save();
+    theClient.save(function(err) {
+      if (!err) {
+        theUser.userClients.push(theClient);
+        theUser.save();
 
-          const theClientId = theClient._id;
-          console.log(theClientId);
-          res.status(200).json({ theClientId });
-          return;
+        const theClientId = theClient._id;
+        console.log(theClientId);
+        res.status(200).json({ theClientId });
+        return;
 
-        }
-        else if (error){
-          res.status(500).json({ message: 'Something went wrong. Nothing was saved.' });
-          return;
-        }
-      });
-    }
+      }
+      else {
+        res.jason(err);
+      }
+    });
   });
 
   //EDIT--------------------------------------------------------------------

@@ -11,17 +11,6 @@ router.post('/api/signup', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  const avatarUrl = req.body.avatarUrl;
-  // const firstName = req.body.firstName;
-  // const lastName = req.body.lastName;
-  // const companyName = req.body.companyName;
-  // const primaryPhone = req.body.phonePrimary;
-  // const street1 = req.body.street;
-  // const street2 = req.body.street;
-  // const city = req.body.city;
-  // const province = req.body.province;
-  // const zip = req.body.province;
-
   //second step of sign up
   if (!username || !password) {
     res.status(400).json({message: 'Provide the email and password.'});
@@ -40,16 +29,6 @@ router.post('/api/signup', (req, res, next) => {
     const theUser = new User({
       username: username,
       password: hashPass,
-      // avatarUrl: avatarUrl,
-      // firstName: firstName,
-      // lastName: lastName,
-      // companyName: companyName,
-      // primaryPhone: primaryPhone,
-      // street1: street1,
-      // street2: street2,
-      // city: city,
-      // province: province,
-      // zip: zip,
     });
 
     theUser.save((err) => {
@@ -112,65 +91,11 @@ router.post('/api/logout', (req, res, next) => {
 //--------------------------------------------------------Validate user is loged in route
 router.get('/api/checklogin', (req, res, next) => { // this function verifies if the user is authenticated or not.
   if (req.isAuthenticated()) { // passing the isAuthenticated function which will verify for us the user is authenticated.
-    // res.status(200).json({ message: 'You are currently loged in!' });
-res.status(200).json(req.user);
+    res.status(200).json(req.user);
     return;
   }// Checking if loged in or not
-
   else // otherwise res serve 403 (forbidden)
-    res.status(403).json({ message: 'Unauthorized. Please login.' });
+  res.status(403).json({ message: 'Unauthorized. Please login.' });
 });
-
-//--------------------------------------------------------Add personal details route
-// router.put('/api/edit/:id', (req, res) => {
-//
-//   if(!mongoose.Types.ObjectId.isValid(req.params.id)) { // Checks if the user id exists
-//     res.status(400).json({ message: 'Specified id is not valid. Try another one.' });
-//     return;
-//   }
-//
-//   const update = {
-//     firstName : req.body.firstName,
-//     lastName : req.body.lastName,
-//     // companyName : req.body.companyName,
-//     // primaryphone : req.body.primaryPhone,
-//     // street1 : req.body.street1,
-//     // street2 : req.body.street2,
-//     // city : req.body.city,
-//     // province : req.body.province,
-//     // zip : req.body.zip
-//   };
-//
-//   User.findByIdAndUpdate(req.params.id, update, (err) => {
-//     if (err) {
-//       res.json(err);
-//       return;
-//     }
-//
-//     res.json({
-//       message: 'User account updated successfully!'
-//     });
-//   });
-// });
-//
-// //-------------------------------------------------------- Delete account route
-// router.delete('/api/delete/:id', (req, res) => {
-//   // Checks if user ID is valid in the URL
-//   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
-//     res.status(400).json({ message: 'Specified id is not valid. Try another one.' });
-//     return;
-//   }
-//
-//   User.remove({ _id: req.params.id }, (err) => {
-//     if (err) {
-//       res.json(err);
-//       return;
-//     }
-//
-//     return res.json({
-//       message: 'User has been deleted from the database.'
-//     });
-//   })
-// });
 
 module.exports = router;
