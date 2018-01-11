@@ -86,7 +86,6 @@ router.get('/api/client/all', (req, res, next)=>{
     }
       else
       res.status(403).json({ message: 'You can\'t do that. Please log in first.' });
-
   });
 
   //EDIT--------------------------------------------------------------------

@@ -13,6 +13,8 @@ const indexRoutes = require('./routes/auth-routes');
 const authRoutes  = require('./routes/auth-routes');
 const usersRoutes = require('./routes/users-routes');
 const clientsRoutes = require('./routes/client-routes');
+const serviceRoutes = require('./routes/service-routes');
+
 
 require('./config/database-setup');
 require('./config/passport-setup');
@@ -48,6 +50,7 @@ app.use('/', indexRoutes);
 app.use('/', authRoutes);
 app.use('/', usersRoutes);
 app.use('/', clientsRoutes);
+app.use('/', serviceRoutes);
 //-------------------------------------
 
 app.use((req, res, next) => {
