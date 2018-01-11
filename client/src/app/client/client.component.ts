@@ -15,10 +15,19 @@ export class ClientComponent implements OnInit {
 
   errorMessage: string;
 
-  client = {
-  };
+  client:any = {};
 
-  newData = {}
+  // newData = {
+  //   clientFirstName: '',
+  //   clientLastName: '',
+  //   clientUsername: '',
+  //   clientPrimaryPhone: '',
+  //   clientStreet1: '',
+  //   clientStreet2: '',
+  //   clientCity: '',
+  //   clientProvince: '',
+  //   clientZip: ''
+  // }
 
   constructor(
     private router: Router,
@@ -46,20 +55,9 @@ export class ClientComponent implements OnInit {
 
 
   doEditClient() {
-    this.ClientsService.editClient(this.CurrentClientId, this.newData).toPromise()
+    this.ClientsService.editClient(this.CurrentClientId, this.client).toPromise()
     .then((resultFromApi) => {
-      this.client = {
-        clientFirstName: '',
-        clientLastName: '',
-        clientUsername: '',
-        clientPrimaryPhone: '',
-        clientStreet1: '',
-        clientStreet2: '',
-        clientCity: '',
-        clientProvince: '',
-        clientZip: ''
-      };
-      this.client = this.newData;
+      this.client = resultFromApi;
       // clear error message
       this.errorMessage = "";
 
