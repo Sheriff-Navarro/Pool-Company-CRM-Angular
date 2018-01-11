@@ -46,8 +46,6 @@ export class AllClientsPageComponent implements OnInit {
         }
       }
     });
-
-    // this.clientArray.pull();
   }
 
 }

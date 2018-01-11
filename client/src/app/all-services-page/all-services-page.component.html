@@ -1,0 +1,33 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="card">
+  <a style="float: right;" class="btn btn-success" href="/app/service/new" role="button">New Service</a>
+  <h1 class="page-header">Services</h1>
+
+  <div *ngIf="serviceListError" class="alert alert-danger" style="margin: 0px;" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>{{ serviceListError }}</div>
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Service Name</th>
+          <th>Service Description</th>
+          <th>Service Price</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let service of serviceArray">
+          <th class="col-md-2"><a href="app/service/{{service._id}}">{{ service.serviceName }}</a></th>
+          <th class="col-md-2"><p>{{ service.serviceDescription }}</p></th>
+          <th class="col-md-2"><p>{{ service.servicePrice }}</p></th>
+          <th class="col-md-2"><a href="app/service" style="color: Crimson;" (click)="toDelservice(service._id)">Delete</a></th>
+        </tr>
+        </tbody>
+        </table>
+  </div> <!-- closes scrollableList -->
+
+
+</div> <!-- closes card -->

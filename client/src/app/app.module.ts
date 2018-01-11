@@ -5,6 +5,8 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthService } from "./services/auth.service";
 import { UsersService } from "./services/users.service";
 import { ClientsService } from "./services/clients.service";
+import { ClientServiceService } from './services/client-service.service';
+
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -18,6 +20,7 @@ import { PostSignupComponent } from './post-signup/post-signup.component';
 import { NewClientComponent } from './new-client/new-client.component';
 import { AllClientsPageComponent } from './all-clients-page/all-clients-page.component';
 import { ClientComponent } from './client/client.component';
+import { AllServicesPageComponent } from './all-services-page/all-services-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
@@ -28,6 +31,7 @@ const routes: Routes = [
   { path: 'app/client/new',  component:  NewClientComponent },
   { path: 'app/client',  component: AllClientsPageComponent },
   { path: 'app/client/details/:id',  component:  ClientComponent },
+  { path: 'app/service',  component:  AllServicesPageComponent },
   { path: '**', component: ErrorComponent }
 ];
 
@@ -42,7 +46,8 @@ const routes: Routes = [
     PostSignupComponent,
     NewClientComponent,
     AllClientsPageComponent,
-    ClientComponent
+    ClientComponent,
+    AllServicesPageComponent
   ],
   imports: [
     RouterModule.forRoot(routes),  //  <!-- "routes" is the array defined above
@@ -50,7 +55,7 @@ const routes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [AuthService, UsersService, ClientsService],
+  providers: [AuthService, UsersService, ClientsService, ClientServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

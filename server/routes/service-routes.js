@@ -9,7 +9,7 @@ const Client       = require('../models/client-model');
 const router = express.Router();
 
 //GET ALL-----------------------------------------------------------------
-router.get('/api/service/all', (req, res)=>{
+router.get('/api/service/all', (req, res, next)=>{
   console.log('starting...');
   if (req.isAuthenticated()) {
     console.log('authenticated. Getting all service..');
