@@ -46,6 +46,10 @@ export class NewClientComponent implements OnInit {
   }
 
   doCreateClient() {
+    if (!this.FormData.clientFirstName){
+      this.FormData.clientFirstName = "(Not Specified)";
+    }
+
     this.ClientsService.createClient(this.FormData)
       .then((createdClientId: string) => {
           this.FormData = {
