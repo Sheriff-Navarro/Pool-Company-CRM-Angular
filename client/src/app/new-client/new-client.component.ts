@@ -59,14 +59,14 @@ export class NewClientComponent implements OnInit {
           clientProvince: '',
           clientZip: '',
           };
+          // this.router.navigate(['/app/client/details/'+this.toRouteId]);
+          this.router.navigate(['/app/client']);
       })
       .catch((err) => {
           const parsedError = err.json();
           this.errorMessage = parsedError.message + ' ';
       });
 
-      // this.router.navigate(['/app/client/details/'+this.toRouteId]);
-      this.router.navigate(['/app/client']);
   } // close doSignUp()
 
 }
