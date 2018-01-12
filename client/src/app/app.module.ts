@@ -20,7 +20,8 @@ import { PostSignupComponent } from './post-signup/post-signup.component';
 import { NewClientComponent } from './new-client/new-client.component';
 import { AllClientsPageComponent } from './all-clients-page/all-clients-page.component';
 import { ClientComponent } from './client/client.component';
-import { AllServicesPageComponent } from './all-services-page/all-services-page.component';
+import { AllServicesPageComponent } from './all-services-page/all-services-page.component'
+import { NewServiceComponent } from './new-service/new-service.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'app/client',  component: AllClientsPageComponent },
   { path: 'app/client/details/:id',  component:  ClientComponent },
   { path: 'app/service',  component:  AllServicesPageComponent },
+  { path: 'app/service/new',  component:  NewServiceComponent },
   { path: '**', component: ErrorComponent }
 ];
 
@@ -47,7 +49,8 @@ const routes: Routes = [
     NewClientComponent,
     AllClientsPageComponent,
     ClientComponent,
-    AllServicesPageComponent
+    AllServicesPageComponent,
+    NewServiceComponent
   ],
   imports: [
     RouterModule.forRoot(routes),  //  <!-- "routes" is the array defined above

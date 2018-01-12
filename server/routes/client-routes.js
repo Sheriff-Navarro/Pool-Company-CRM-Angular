@@ -61,10 +61,10 @@ router.get('/api/client/all', (req, res, next)=>{
 
       const theClient = new Client({
         clientOwner : req.user.id,
-        clientUsername: req.body.clientUsername,
         clientFirstName: req.body.clientFirstName,
         clientLastName: req.body.clientLastName,
         clientPrimaryPhone: req.body.clientPrimaryPhone,
+        clientUsername: req.body.clientUsername,
         clientStreet1: req.body.clientStreet1,
         clientStreet2: req.body.clientStreet2,
         clientCity: req.body.clientCity,

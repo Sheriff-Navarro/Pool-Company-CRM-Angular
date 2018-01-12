@@ -1,0 +1,37 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="card center-block">
+  <a href="/app/dashboard" class="btn btn-secondary" style="float: right; color: black;"><span class="glyphicon glyphicon-remove"></span></a>
+  <h1 class="text-center page-header">New Service</h1>
+  <span *ngIf="errorMessage"><h1>🤦</h1><p class="bg-danger">{{ errorMessage }}</p></span>
+
+  <form (ngSubmit)="doCreateService()">
+    <div class="row">
+      <div class="col-sm-6">
+        <label for="clientFirstName">Service Name</label><br>
+        <input class="form-control" type="text" placeholder="General Pool Service" [(ngModel)]="FormData.serviceName" name="serviceName"/><br>
+      </div>
+
+      <div class="col-sm-6">
+        <label for="clientLastName">Select a Client</label><br>
+
+        <select class="form-control"  #selectedClient>
+          <option value="" selected disabled hidden>Choose here</option>
+          <option *ngFor="let client of clientArray" [value]="client._id">{{client.clientFirstName}} {{client.clientLastName}}<option>
+        </select>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label for="clientPrimaryPhone">Description</label><br>
+        <input class="form-control" type="text" placeholder="Awesome service" [(ngModel)]="FormData.serviceDescription" name="serviceDescription"/><br>
+      </div>
+      <div class="col-sm-6">
+        <label for="clientUsername">Price</label><br>
+        <input class="form-control" type="number" placeholder="$90" [(ngModel)]="FormData.servicePrice" name="servicePrice"/><br>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="getClientIdFromSelect(selectedClient.value)"><span style="margin-right: 10px;"class="glyphicon glyphicon-plus"></span>Create Service</button>
+  </form>
+</div>

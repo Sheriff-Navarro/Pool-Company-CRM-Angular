@@ -19,5 +19,22 @@ export class ClientServiceService {
     .map( res => res.json())
   }
 
+  createService(componentInfo, clientId) {
+    return this.http
+    .post(
+      `${environment.apiBase}/api/service/new/`+clientId,
+      {
+        clientFirstName: componentInfo.serviceName,
+        clientLastName: componentInfo.serviceDescription,
+        clientPrimaryPhone: componentInfo.servicePrice
+      },
+      // Send the cookies across domains
+      { withCredentials: true }
+    )
+    // Convert from observable to promise
+    .toPromise()
+    // Parse the JSON
+    .then(res => res.json());
+}
 
 }

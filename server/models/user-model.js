@@ -25,6 +25,7 @@ const userSchema = new Schema({
   },
   isAdmin: {type: Boolean, default: true},
   userClients: [{ type: Schema.Types.ObjectId, 'default':[], ref:'Client' }],
+  userServices: [{ type: Schema.Types.ObjectId, 'default':[], ref:'Service' }],
 
 }); // closing the userSchema
 
