@@ -24,9 +24,9 @@ export class ClientServiceService {
     .post(
       `${environment.apiBase}/api/service/new/`+clientId,
       {
-        clientFirstName: componentInfo.serviceName,
-        clientLastName: componentInfo.serviceDescription,
-        clientPrimaryPhone: componentInfo.servicePrice
+        serviceName: componentInfo.serviceName,
+        serviceDescription: componentInfo.serviceDescription,
+        servicePrice: componentInfo.servicePrice
       },
       // Send the cookies across domains
       { withCredentials: true }
