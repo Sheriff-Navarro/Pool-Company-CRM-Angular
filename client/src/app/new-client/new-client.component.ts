@@ -12,11 +12,11 @@ import {ClientsService} from '../services/clients.service';
 
 export class NewClientComponent implements OnInit {
   errorMessage: string;
+  toRouteId: string;
 
   FormData = {
     clientFirstName: '',
     clientLastName: '',
-    // clientCompanyName: '',
     clientPrimaryPhone: '',
     clientUsername: '',
     clientStreet1: '',
@@ -35,11 +35,6 @@ export class NewClientComponent implements OnInit {
 
   ngOnInit() {
     this.AuthService.checklogin()
-      // If success, we are logged in.
-      // .then((resultFromApi) => {
-      //     // this.router.navigate(['/app/dashboard']);
-      // })
-      // Even if you don't do anything on error, catch to avoid a console error.
       .catch((err) => {
       this.router.navigate(['/app/login']);
       });
@@ -56,7 +51,6 @@ export class NewClientComponent implements OnInit {
           this.FormData = {
           clientFirstName: '',
           clientLastName: '',
-          // clientCompanyName: '',
           clientUsername: '',
           clientPrimaryPhone: '',
           clientStreet1: '',
@@ -65,13 +59,14 @@ export class NewClientComponent implements OnInit {
           clientProvince: '',
           clientZip: '',
           };
-          // this.router.navigate(['/app/client/details/'+createdClientId]);
-          this.router.navigate(['/app/client']);
       })
       .catch((err) => {
           const parsedError = err.json();
           this.errorMessage = parsedError.message + ' ';
       });
+
+      // this.router.navigate(['/app/client/details/'+this.toRouteId]);
+      this.router.navigate(['/app/client']);
   } // close doSignUp()
 
 }
