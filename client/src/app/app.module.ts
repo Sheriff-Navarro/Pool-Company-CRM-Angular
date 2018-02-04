@@ -21,10 +21,10 @@ import { NewClientComponent } from './new-client/new-client.component';
 import { AllClientsPageComponent } from './all-clients-page/all-clients-page.component';
 import { ClientComponent } from './client/client.component';
 import { AllServicesPageComponent } from './all-services-page/all-services-page.component'
-import { NewServiceComponent } from './new-service/new-service.component';
+import { NewServiceComponent } from './new-service/new-service.component'
 
 const routes: Routes = [
-  { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'app/login', pathMatch: 'full' },
   { path: 'app/login',  component: AuthComponent },
   { path: 'app/dashboard', component: DashboardComponent },
   { path: 'app/settings',  component:  SettingsComponent },
@@ -50,7 +50,7 @@ const routes: Routes = [
     AllClientsPageComponent,
     ClientComponent,
     AllServicesPageComponent,
-    NewServiceComponent
+    NewServiceComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),  //  <!-- "routes" is the array defined above

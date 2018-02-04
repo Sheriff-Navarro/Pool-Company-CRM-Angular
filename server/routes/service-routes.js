@@ -76,5 +76,5 @@ router.get('/api/service/all', (req, res, next)=>{
       });
     }
   });
-
+  
   module.exports = router;
