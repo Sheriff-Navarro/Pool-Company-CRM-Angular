@@ -1,10 +1,39 @@
 <app-nav-bar></app-nav-bar>
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <h1 class="page-header">Dashboard</h1>
-
-    </div>
+<div class="row card">
+  <div class="page-header">
+    <h1><span class="glyphicon glyphicon-home"></span> Dashboard</h1>
+  </div>
+  <div class="col-md-3">
+    <a href="/app/dashboard#">
+      <div class="dash-header paid-card">
+        <h4><span class="paid"><span class="glyphicon glyphicon-usd"></span><span>Paid</span></span></h4>
+        <h1 class="text-right"><span>$</span>595</h1>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-3">
+    <a href="/app/dashboard#">
+      <div class="dash-header due-card">
+        <h4><span class="due"><span class="glyphicon glyphicon-alert"></span><span>Due</span></span></h4>
+        <h1 class="text-right"><span>$</span>250</h1>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-3">
+    <a href="/app/dashboard#">
+      <div class="dash-header billable-card">
+        <h4><span class="billable"><span class="glyphicon glyphicon-inbox"></span><span>Billable</span></span></h4>
+        <h1 class="text-right"><span>$</span>100</h1>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-3">
+    <a href="/app/dashboard#">
+      <div class="dash-header info-card">
+        <h4><span class="info"><span class="glyphicon glyphicon-info-sign"></span><span>Active</span> Clients</span></h4>
+        <h1 class="text-right">186<span> Clients</span></h1>
+      </div>
+    </a>
   </div>
 </div>

@@ -1,0 +1,85 @@
+.dash-header {
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin-bottom: 10px;
+}
+span.glyphicon {
+  margin-right: 10px;
+}
+.dash-header > h1.text-right {
+  margin: 0px;
+  padding: 5px;
+  font-size: 28px;
+  /* color: black;
+  background-color: white;
+  border-radius: 5px; */
+}
+
+/* span + span {
+    position: relative;
+    bottom: 2px;
+} */
+
+.paid-card {
+  background-color: #007E33;
+}
+
+.due-card {
+  background-color: #CC0000;
+}
+
+.billable-card {
+  background-color: #FF8800;
+}
+
+.info-card {
+  background-color: #0099CC;
+}
+
+h4 {
+  width: 100%;
+  margin-top: 4px;
+}
+
+a:hover {
+  text-decoration:  none !important;
+}
+
+.icon-btn span.glyphicon {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.icon-btn:hover {
+  -moz-transition: all 0.3s ease !important;
+  -ms-transition: all 0.3s ease !important;
+  -o-transition: all 0.3s ease !important;
+  -webkit-box-shadow: none !important;
+  -webkit-transition: all 0.3s ease !important;
+  border: 1px solid #8e8e8e !important;
+}
+
+.icon-btn {
+  height: auto !important;
+  width: 100px;
+  padding: 12px 0px 8px 0px;
+  border-radius: 10px;
+}
+
+.icon-btn {
+  background-color: #fafafa;
+  background-image: none;
+  border: 1px solid #ddd;
+  box-shadow: none;
+  color: #646464;
+  cursor: pointer;
+  display: inline-block;
+  filter: none;
+  margin: 5px 5px 0 0 !important;
+  min-width: 80px;
+  padding: 12px 0px 0px 0px;
+  position: relative;
+  text-align: center;
+}
