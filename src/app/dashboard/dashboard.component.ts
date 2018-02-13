@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { ClientsService } from '../services/clients.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,9 +11,11 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   currentUser: any = {};
+  clientsNum: number;
 
   constructor(
     private AuthService: AuthService,
+    private ClientsService: ClientsService,
     private router: Router
 ) { }
 
@@ -21,5 +24,11 @@ export class DashboardComponent implements OnInit {
       .catch(() => {
           this.router.navigate(['/app/login']);
       });
+
+      this.ClientsService.getClients()
+        .subscribe(
+          (clientList) => {
+              this.clientsNum = clientList.length;
+          });
   }
 }
