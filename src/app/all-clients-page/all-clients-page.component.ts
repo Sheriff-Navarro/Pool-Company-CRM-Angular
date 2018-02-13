@@ -11,6 +11,7 @@ import {ClientsService} from '../services/clients.service';
 export class AllClientsPageComponent implements OnInit {
   clientArray: any[] = [];
   clientListError: string;
+  clientsNum: Number;
 
   constructor(
     private AuthService: AuthService,
@@ -23,10 +24,12 @@ export class AllClientsPageComponent implements OnInit {
           .catch((err) => {
           this.router.navigate(['/app/login']);
       });
+
       this.ClientsService.getClients()
         .subscribe(
           (clientList) => {
               this.clientArray = clientList;
+              this.clientsNum = clientList.length;
           },
           () => {
               this.clientListError = 'No clients yet.';
